@@ -20,7 +20,7 @@ export default function SectionContainer({
     <section
       id={id}
       className={cn(
-        "py-16 md:py-24 scroll-mt-0",
+        "py-12 sm:py-16 md:py-24 scroll-mt-0",
         {
           "bg-white": bg === "white",
           "bg-slate-50 border-y border-slate-100": bg === "slate",
