@@ -65,7 +65,7 @@ const cardVariants = {
 export default function Services() {
   return (
     <section id="services" className="py-12 sm:py-16 md:py-24 bg-slate-50 border-y border-slate-100">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6 sm:mb-8">

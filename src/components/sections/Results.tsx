@@ -61,7 +61,7 @@ export default function Results() {
 
   return (
     <section ref={sectionRef} id="results" className="py-12 sm:py-16 md:py-24 bg-white overflow-hidden">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4 mb-6 sm:mb-8">

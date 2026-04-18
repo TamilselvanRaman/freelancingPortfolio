@@ -52,7 +52,7 @@ export default function Testimonials() {
       <div className="absolute top-0 right-1/4 w-[500px] h-[300px] bg-green-100/50 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[200px] bg-blue-100/40 blur-[80px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
 
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">

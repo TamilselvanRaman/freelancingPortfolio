@@ -32,7 +32,7 @@ export default function Navbar() {
         scrolled ? "bg-[#f1f5f9]/90 shadow-sm border-b border-slate-200/50" : "bg-transparent"
       )}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:p-6 md:px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-4xl items-center justify-between p-4 sm:p-6 md:px-8" aria-label="Global">
         <div className="flex md:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 text-2xl font-bold tracking-tight text-slate-900">
             Tamil<span className="text-green-600">Selvan.</span>

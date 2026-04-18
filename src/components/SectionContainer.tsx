@@ -36,7 +36,7 @@ export default function SectionContainer({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-6xl px-4 sm:px-6"
+        className="mx-auto max-w-4xl px-4 sm:px-6"
       >
         {children}
       </motion.div>

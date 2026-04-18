@@ -104,7 +104,7 @@ export default function Pricing() {
       {/* Top light glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-green-100/60 blur-[80px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
 
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">

@@ -153,7 +153,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 export default function Portfolio() {
   return (
     <section id="portfolio" className="py-12 sm:py-16 md:py-24 bg-slate-50 border-y border-slate-100">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4 mb-6 sm:mb-8">
