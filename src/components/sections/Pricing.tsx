@@ -62,7 +62,13 @@ const cardVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-export default function Pricing() {
+import { Button } from "@/components/Button";
+
+interface PricingProps {
+  onContactClick?: () => void;
+}
+
+export default function Pricing({ onContactClick }: PricingProps) {
   return (
     <section id="pricing" className="relative py-16 sm:py-24 md:py-32 bg-white overflow-hidden">
 
@@ -244,23 +250,28 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex flex-col items-center mt-10 sm:mt-25"
+          className="flex flex-col items-center mt-10 sm:mt-24"
         >
           <div className="relative group cursor-pointer">
             {/* Outer animated glow */}
             <motion.div
               animate={{ scale: [1, 1.06, 1] }}
               transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-              className="absolute -inset-1.5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full blur-lg opacity-40 group-hover:opacity-70 transition duration-300"
+              className="absolute -inset-1.5 bg-gradient-to-r from-green-100 to-emerald-300 rounded-full blur-lg opacity-60 group-hover:opacity-70 transition duration-300"
             />
-            <button className="relative flex items-center gap-3 px-8 sm:px-12 py-3.5 sm:py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-base sm:text-xl rounded-full border border-green-400/30 shadow-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300">
+            <Button   
+              variant="ultra" 
+              size="lg" 
+              onClick={onContactClick}
+              className="relative px-8 sm:px-12 h-auto py-4 sm:py-5 text-base sm:text-xl rounded-full"
+            >
               Start Your Website Today
-            </button>
+            </Button>
 
             {/* Limited Time badge */}
-            <div className="absolute -top-3 -right-2 sm:-right-6 ">
+            <div className="absolute -top-3 -right-2 sm:-right-6 z-20">
               <div className="relative">
-                <div className="absolute inset-0 bg-green-400 blur-sm rounded-full opacity-40" />
+                <div className="absolute inset-0 bg-green-100 blur-sm rounded-full opacity-40" />
                 <span className="relative bg-white border border-green-200 text-green-600 text-[9px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full shadow whitespace-nowrap">
                   Limited Time Offer
                 </span>

@@ -4,7 +4,7 @@ import * as React from "react"
 import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onDragOver' | 'onDragEnter' | 'onDragLeave' | 'onDrop' | 'onScroll' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration' | 'onTransitionEnd'> {
   variant?: "default" | "outline" | "ghost" | "secondary" | "corporate" | "premium" | "ultra";
   size?: "default" | "sm" | "lg" | "icon";
 }
