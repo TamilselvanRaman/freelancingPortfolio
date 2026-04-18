@@ -11,6 +11,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
+if (!firebaseConfig.projectId && typeof window !== 'undefined') {
+  console.warn("Firebase Project ID is missing. Check your .env.local or deployment dashboard and RESTART/REDEPLOY.");
+}
 
 // Initialize Firebase
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
