@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Code2, Rocket, Globe, ShoppingCart, MonitorCog, CreditCard } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -52,44 +52,15 @@ const plans = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
-
-/* Animated wave SVG */
-function WaveLine({ delay = 0, opacity = 0.5, color = "#22c55e", yOffset = 0 }: {
-  delay?: number; opacity?: number; color?: string; yOffset?: number;
-}) {
-  return (
-    <motion.svg
-      viewBox="0 0 1200 80"
-      className="w-full"
-      style={{ marginTop: yOffset }}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 1 }}
-    >
-      <motion.path
-        d="M0,40 C150,80 300,0 450,40 C600,80 750,0 900,40 C1050,80 1200,0 1200,40"
-        fill="none"
-        stroke={color}
-        strokeWidth="2"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: delay + 0.2, duration: 2, ease: "easeInOut" }}
-        strokeLinecap="round"
-      />
-    </motion.svg>
-  );
-}
 
 export default function Pricing() {
   return (
@@ -255,14 +226,7 @@ export default function Pricing() {
           ))}
         </motion.div>
 
-        {/* ── WAVE LINES ── */}
-        <div className="mt-12 sm:mt-16 space-y-0 -mx-4 sm:-mx-6 overflow-hidden">
-          <WaveLine delay={0.2} opacity={0.25} color="#22c55e" />
-          <WaveLine delay={0.35} opacity={0.45} color="#16a34a" yOffset={-20} />
-          <WaveLine delay={0.5}  opacity={0.20} color="#4ade80" yOffset={-20} />
-          <WaveLine delay={0.65} opacity={0.35} color="#22c55e" yOffset={-20} />
-          <WaveLine delay={0.8}  opacity={0.15} color="#86efac" yOffset={-20} />
-        </div>
+
 
         {/* CTA Button */}
         <motion.div
@@ -270,7 +234,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex flex-col items-center mt-10 sm:mt-12"
+          className="flex flex-col items-center mt-10 sm:mt-25"
         >
           <div className="relative group cursor-pointer">
             {/* Outer animated glow */}
@@ -284,7 +248,7 @@ export default function Pricing() {
             </button>
 
             {/* Limited Time badge */}
-            <div className="absolute -top-3 -right-2 sm:-right-6">
+            <div className="absolute -top-3 -right-2 sm:-right-6 ">
               <div className="relative">
                 <div className="absolute inset-0 bg-green-400 blur-sm rounded-full opacity-40" />
                 <span className="relative bg-white border border-green-200 text-green-600 text-[9px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full shadow whitespace-nowrap">
@@ -294,7 +258,6 @@ export default function Pricing() {
             </div>
           </div>
 
-          <p className="mt-4 text-slate-400 text-xs sm:text-sm">24/7 Virtual Support Available</p>
         </motion.div>
 
       </div>

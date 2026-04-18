@@ -25,7 +25,7 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="w-full flex flex-col items-center"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tighter text-slate-900 leading-[1.1] mb-4 sm:mb-6 px-2 mt-10">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tighter text-slate-900 leading-[1.1] mb-4 sm:mb-6 px-2 mt-20">
             We build websites that{" "}
             <br className="hidden sm:block" />
             <span className="relative inline-block">
