@@ -25,19 +25,6 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="w-full flex flex-col items-center"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white shadow-sm border border-slate-200 text-slate-800 text-xs sm:text-sm font-medium mb-6 sm:mb-8"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            Available for new projects
-          </motion.div>
-
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tighter text-slate-900 leading-[1.1] mb-4 sm:mb-6 px-2">
             We build websites that{" "}
             <br className="hidden sm:block" />
