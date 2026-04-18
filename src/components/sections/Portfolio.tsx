@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
+import Image from "next/image";
 
 const projects = [
   {
@@ -12,11 +13,12 @@ const projects = [
     description:
       "An e-commerce platform for selling herbal products, built with a responsive React frontend and powered by Firebase. Designed for performance, scalability, and seamless user experience.",
     url: "https://vasandhamherbals.com",
+    image: "/projectImages/vasandhamherbels.png",
     hasViewLiveBtn: true,
     accent: "from-green-400 to-emerald-500",
-    cardBg: "bg-green-50",
+    overlayColor: "rgba(16,185,129,0.15)",
     labelColor: "text-green-600",
-    tag: "Live Project",
+    labelBg: "bg-green-50 border-green-200",
   },
   {
     index: "02",
@@ -24,12 +26,13 @@ const projects = [
     subtitle: "Medical Consultation Platform",
     description:
       "A responsive medical consultation website designed to guide users through safe medical abortion information, featuring smooth animations and structured sections.",
+    image: "/projectImages/UNI_BRAINS.png",
     hasViewLiveBtn: false,
     status: "Currently Live and Running",
     accent: "from-blue-400 to-indigo-500",
-    cardBg: "bg-blue-50",
+    overlayColor: "rgba(99,102,241,0.15)",
     labelColor: "text-blue-600",
-    tag: "Live Project",
+    labelBg: "bg-blue-50 border-blue-200",
   },
 ];
 
@@ -48,20 +51,27 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       {/* Image Side */}
       <motion.div
         style={{ y }}
-        className={`relative ${project.cardBg} min-h-[200px] sm:min-h-[280px] flex items-center justify-center overflow-hidden ${index % 2 === 1 ? "lg:order-2" : ""}`}
+        className={`relative min-h-[220px] sm:min-h-[320px] overflow-hidden ${index % 2 === 1 ? "lg:order-2" : ""}`}
       >
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-10`} />
+        {/* Real project image */}
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
 
-        {/* Decorative grid */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)",
-          backgroundSize: "24px 24px"
-        }} />
+        {/* Subtle colour overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ background: project.overlayColor }}
+        />
 
-        {/* Project number watermark */}
-        <span className="absolute bottom-4 right-6 text-[80px] sm:text-[120px] font-black text-black/5 select-none leading-none">
-          {project.index}
-        </span>
+        {/* Top gradient fade for badge legibility */}
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/30 to-transparent" />
+        {/* Bottom gradient */}
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/20 to-transparent" />
 
         {/* Status badge */}
         {project.status && (
@@ -79,12 +89,19 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </motion.div>
         )}
 
-        {/* Center label */}
-        <div className="relative z-10 text-center px-8">
-          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur border border-white shadow-sm`}>
-            <span className={`text-xs font-bold uppercase tracking-widest ${project.labelColor}`}>{project.subtitle}</span>
+        {/* Subtitle chip — bottom left */}
+        <div className="absolute bottom-4 left-4 z-10">
+          <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur border shadow-sm ${project.labelBg}`}>
+            <span className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest ${project.labelColor}`}>
+              {project.subtitle}
+            </span>
           </div>
         </div>
+
+        {/* Project number watermark */}
+        <span className="absolute bottom-4 right-5 text-[70px] sm:text-[100px] font-black text-white/10 select-none leading-none">
+          {project.index}
+        </span>
       </motion.div>
 
       {/* Content Side */}
