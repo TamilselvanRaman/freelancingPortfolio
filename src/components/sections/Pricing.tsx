@@ -121,8 +121,18 @@ export default function Pricing() {
             <motion.div
               key={index}
               variants={cardVariants}
+              whileHover={{
+                y: plan.popular ? -10 : -8,
+                scale: plan.popular ? 1.08 : 1.03,
+                boxShadow: plan.popular
+                  ? `0 0 80px ${plan.glow}, 0 30px 80px rgba(0,0,0,0.12)`
+                  : "0 20px 60px rgba(34,197,94,0.15), 0 8px 32px rgba(0,0,0,0.08)",
+                borderColor: plan.popular ? "#22c55e" : "#86efac",
+              }}
+              whileTap={{ scale: plan.popular ? 1.04 : 0.99 }}
+              transition={{ type: "spring", stiffness: 280, damping: 22 }}
               className={cn(
-                "relative rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col transition-all duration-300",
+                "relative rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col cursor-pointer",
                 plan.popular
                   ? "sm:scale-105 sm:-my-4 z-20"
                   : "z-10"
