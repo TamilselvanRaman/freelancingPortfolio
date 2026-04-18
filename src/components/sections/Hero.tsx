@@ -24,7 +24,7 @@ interface HeroProps {
 
 export default function Hero({ onContactClick }: HeroProps) {
   return (
-    <SectionContainer id="home" className="relative flex flex-col items-center justify-center min-h-[90vh] sm:min-h-[95vh] pt-24 sm:pt-32 pb-12 sm:pb-16" bg="transparent">
+    <SectionContainer id="home" className="relative flex flex-col items-center justify-center min-h-[90vh] sm:min-h-[95vh] pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden" bg="transparent">
       {/* Subtle background blurs */}
       <div className="absolute top-1/4 left-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-green-200/20 rounded-full blur-[80px] sm:blur-[100px] -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-64 sm:w-96 md:w-[500px] h-64 sm:h-96 md:h-[500px] bg-slate-200/30 rounded-full blur-[80px] sm:blur-[100px] -z-10" />
@@ -39,7 +39,7 @@ export default function Hero({ onContactClick }: HeroProps) {
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tighter text-slate-900 leading-[1.1] mb-4 sm:mb-6 px-2 mt-20">
             We build websites that{" "}
             <br className="hidden sm:block" />
-            <span className="relative inline-block">
+            <span className="relative inline-block whitespace-nowrap sm:whitespace-normal">
               <span className="relative z-10 text-green-600">grow your business</span>
               <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3 md:h-4 text-green-300/60 -z-10" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <path d="M2.00031 6.84039C56.667 2.17373 158.8 -3.15961 198 6.84039" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
@@ -62,7 +62,7 @@ export default function Hero({ onContactClick }: HeroProps) {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full"
           >
-            <Button 
+              <Button 
               variant="premium"
               onClick={() => {
                 const contactSection = document.getElementById("contact");
@@ -71,11 +71,11 @@ export default function Hero({ onContactClick }: HeroProps) {
                 }
               }}
               size="lg" 
-              className="w-full sm:w-auto rounded-full gap-3 h-14 sm:h-16 px-10 sm:px-12 text-lg sm:text-xl transition-all group"
+              className="w-full sm:w-auto rounded-[2rem] gap-2 sm:gap-3 h-auto min-h-[3.5rem] py-3 sm:py-0 sm:h-16 px-6 sm:px-12 text-sm sm:text-xl transition-all group whitespace-normal text-center"
             >
-              <PremiumSparkle className="w-6 h-6 text-yellow-400 group-hover:rotate-12 transition-transform" />
-              <span className="font-black tracking-tight uppercase">Let's Create Something Amazing</span>
-              <ArrowRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              <PremiumSparkle className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 shrink-0 group-hover:rotate-12 transition-transform" />
+              <span className="font-black tracking-tight uppercase leading-tight">Let's Create Something Amazing</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 opacity-0 hidden sm:block -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
             </Button>
           </motion.div>
         </motion.div>

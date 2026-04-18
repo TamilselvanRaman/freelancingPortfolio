@@ -25,7 +25,7 @@ export default function Footer() {
             <div className="flex gap-4">
               <motion.a 
                 whileHover={{ y: -4 }}
-                href="https://github.com/tamilselvan" 
+                href="https://github.com/TamilselvanRaman/" 
                 target="_blank"
                 className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 hover:text-slate-900 hover:border-slate-300 transition-all shadow-sm"
               >
@@ -33,7 +33,7 @@ export default function Footer() {
               </motion.a>
               <motion.a 
                 whileHover={{ y: -4 }}
-                href="https://linkedin.com/in/tamilselvan" 
+                href="https://www.linkedin.com/in/tamilselvan-raman-758a45291/" 
                 target="_blank"
                 className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm"
               >
@@ -65,7 +65,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-col gap-4 col-span-2 sm:col-span-1">
               <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Contact</h4>
-              <a href="mailto:hello@tamilselvan.com" className="group flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors">
+              <a href="mailto:ceittamilselvanr26@gmail.com" className="group flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors">
                 <Mail className="w-4 h-4" />
                 Email Me
                 <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all" />

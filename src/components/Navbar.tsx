@@ -105,7 +105,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
               }}
               className="px-4 py-2.5 rounded-full flex items-center gap-2"
             >
-              <span className="ml-4">Book a strategic call</span>
+              <span>Book a strategic call</span>
               <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </Button>
           </div>

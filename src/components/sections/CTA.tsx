@@ -59,23 +59,23 @@ export default function CTA() {
               </div>
 
               <div className="space-y-8">
-                <div className="flex items-center gap-5 group cursor-default">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center group-hover:bg-emerald-500 transition-all duration-300">
-                    <Mail className="w-5 h-5 text-emerald-400 group-hover:text-white" />
+                <div className="flex items-center gap-3 sm:gap-5 group cursor-default overflow-hidden">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 transition-all duration-300">
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 group-hover:text-white" />
                   </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Direct Email</p>
-                    <p className="text-white font-bold group-hover:text-emerald-400 transition-colors">stamil096@gmail.com</p>
+                  <div className="min-w-0">
+                    <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Direct Email</p>
+                    <p className="text-white font-bold group-hover:text-emerald-400 transition-colors text-sm sm:text-base truncate">ceittamilselvanr26@gmail.com</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-5 group cursor-default">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center group-hover:bg-emerald-500 transition-all duration-300">
-                    <Phone className="w-5 h-5 text-emerald-400 group-hover:text-white" />
+                <div className="flex items-center gap-3 sm:gap-5 group cursor-default">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 transition-all duration-300">
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 group-hover:text-white" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Mobile</p>
-                    <p className="text-white font-bold group-hover:text-emerald-400 transition-colors">+91 91596 05210</p>
+                    <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Mobile</p>
+                    <p className="text-white font-bold group-hover:text-emerald-400 transition-colors text-sm sm:text-base">+91 99442 87852</p>
                   </div>
                 </div>
 
