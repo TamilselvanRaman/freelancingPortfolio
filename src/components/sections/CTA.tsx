@@ -29,7 +29,7 @@ export default function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold text-slate-900 tracking-tight leading-[0.9] mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-slate-900 tracking-tight leading-[0.95] sm:leading-[0.9] mb-8"
           >
             Let’s Engineer Your <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-500">
@@ -39,10 +39,10 @@ export default function CTA() {
         </div>
 
         {/* High-Impact Contact Box */}
-        <div className="relative bg-slate-900 rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.3)] border border-slate-800">
-          {/* Immersive background elements */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+        <div className="relative bg-slate-900 rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.3)] border border-slate-800">
+          {/* Immersive background elements — pointer-events-none so they don't affect layout */}
+          <div className="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-500/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-56 sm:w-80 h-56 sm:h-80 bg-blue-500/10 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
                style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 

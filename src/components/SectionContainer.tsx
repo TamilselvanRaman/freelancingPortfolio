@@ -20,7 +20,7 @@ export default function SectionContainer({
     <section
       id={id}
       className={cn(
-        "py-12 sm:py-16 md:py-24 scroll-mt-0",
+        "py-12 sm:py-16 md:py-24 scroll-mt-0 overflow-hidden",
         {
           "bg-white": bg === "white",
           "bg-slate-50 border-y border-slate-100": bg === "slate",
@@ -36,7 +36,7 @@ export default function SectionContainer({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-4xl px-4 sm:px-6"
+        className="mx-auto max-w-4xl w-full px-4 sm:px-6"
       >
         {children}
       </motion.div>

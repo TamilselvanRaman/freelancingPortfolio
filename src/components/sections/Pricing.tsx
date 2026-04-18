@@ -140,7 +140,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
               className={cn(
                 "relative rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col cursor-pointer",
                 plan.popular
-                  ? "sm:scale-105 sm:-my-4 z-20"
+                  ? "md:scale-105 md:-my-4 z-20"
                   : "z-10"
               )}
               style={{

@@ -179,11 +179,11 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-24 sm:py-32 bg-white relative overflow-hidden">
-      {/* Background decoration */}
+    <section id="portfolio" className="py-16 sm:py-24 sm:py-32 bg-white relative overflow-hidden">
+      {/* Background decoration — clipped by section overflow-hidden */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 skew-x-[-12deg] translate-x-1/4 pointer-events-none" />
       
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
+      <div className="mx-auto max-w-5xl w-full px-4 sm:px-6 relative z-10">
         {/* Header */}
         <div className="max-w-3xl mb-16 sm:mb-24">
           <motion.div
@@ -219,7 +219,7 @@ export default function Portfolio() {
         </div>
 
         {/* Projects List */}
-        <div className="space-y-16 sm:space-y-24">
+        <div className="space-y-10 sm:space-y-16 lg:space-y-24">
           {projects.map((project, i) => (
             <ProjectCard key={i} project={project} index={i} />
           ))}

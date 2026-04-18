@@ -20,11 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth overflow-x-hidden`}>
-      <body className="antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900 selection:bg-green-200 selection:text-green-900 overflow-x-hidden relative max-w-[100vw] w-full">
-        <Navbar />
-        <main className="flex-1 w-full overflow-x-hidden">{children}</main>
-        <Footer />
+    <html lang="en" className={`${inter.variable} scroll-smooth`} style={{ overflowX: 'hidden' }}>
+      <body className="antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900 selection:bg-green-200 selection:text-green-900" style={{ overflowX: 'hidden', maxWidth: '100vw', position: 'relative' }}>
+        <div style={{ overflowX: 'hidden', width: '100%', maxWidth: '100vw' }}>
+          <Navbar />
+          <main className="flex-1 w-full">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
