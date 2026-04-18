@@ -1,32 +1,26 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { ExternalLink, CheckCircle2 } from "lucide-react";
 import SectionContainer from "../SectionContainer";
 
 const projects = [
   {
-    title: "AI-based Stock Management System",
-    description: "An intelligent inventory platform leveraging AI to predict stock demands and automate reordering processes. Features real-time dashboards and analytics.",
-    tech: ["Next.js", "Python", "TensorFlow", "MongoDB", "Tailwind CSS"],
-    imageColor: "bg-blue-100", // Placeholder for actual image
+    title: "Vasandham Herbals",
+    subtitle: "E-Commerce Website",
+    description: "An e-commerce platform for selling herbal products, built with a responsive React frontend (Vite) and powered by Firebase for backend services. Designed for performance, scalability, and seamless user experience.",
+    tech: ["React (Vite)", "Firebase", "Tailwind CSS"],
+    imageColor: "bg-green-100",
+    url: "https://vasandhamherbals.com",
+    hasViewLiveBtn: true,
   },
   {
-    title: "Expense Tracker Web App",
-    description: "A comprehensive financial management tool for individuals and small businesses to track spending, generate reports, and set budgets.",
-    tech: ["React.js", "Node.js", "Express", "PostgreSQL"],
-    imageColor: "bg-emerald-100",
-  },
-  {
-    title: "Cargo Management System",
-    description: "End-to-end logistics platform for tracking shipments, managing fleets, and optimizing delivery routes globally.",
-    tech: ["Next.js", "TypeScript", "Prisma", "AWS", "Google Maps API"],
-    imageColor: "bg-indigo-100",
-  },
-  {
-    title: "Online College Admission System",
-    description: "A secure, scalable portal for students to apply to courses, upload documents, and track admission status in real-time.",
-    tech: ["React.js", "Firebase", "Tailwind CSS", "Stripe"],
-    imageColor: "bg-amber-100",
+    title: "UNI_BRAINS",
+    subtitle: "Medical Consultation Platform",
+    description: "A responsive medical consultation website designed to guide users through safe medical abortion information. Built with React, Tailwind CSS, and GSAP, featuring smooth animations and structured sections like Hero, Services, FAQs, Experts, and Contact.",
+    tech: ["React", "Tailwind CSS", "GSAP"],
+    imageColor: "bg-blue-100",
+    status: "Currently Live and Running",
   },
 ];
 
@@ -34,22 +28,22 @@ const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
   },
 };
 
 export default function Portfolio() {
   return (
-    <SectionContainer id="portfolio" bg="white">
+    <SectionContainer id="portfolio" bg="slate">
       {/* Header Row */}
       <div className="flex flex-col md:flex-row md:items-end gap-4 mb-8">
         <motion.h2 
@@ -75,7 +69,7 @@ export default function Portfolio() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-xl md:text-2xl text-slate-500 mb-1"
         >
-          Selected work and projects.
+          Selected work and real-world projects.
         </motion.p>
       </div>
       
@@ -86,40 +80,74 @@ export default function Portfolio() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
       >
         {projects.map((project, index) => (
           <motion.div 
             key={index} 
             variants={itemVariants}
-            className="group flex flex-col bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:border-green-300 hover:shadow-xl hover:shadow-green-100 transition-all duration-300"
+            className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           >
             {/* Image Container */}
-            <div className={`relative w-full h-64 md:h-72 overflow-hidden ${project.imageColor} flex items-center justify-center p-6`}>
-              <div className="w-full h-full bg-white/50 backdrop-blur-sm rounded-xl border border-white/60 shadow-sm flex items-center justify-center transform group-hover:scale-[1.02] transition-transform duration-500">
-                <span className="text-slate-500 font-medium tracking-widest uppercase text-sm">Project Preview</span>
+            <div className={`relative w-full h-56 sm:h-64 md:h-72 overflow-hidden ${project.imageColor} flex items-center justify-center p-6`}>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+              <div className="w-full h-full bg-white/50 backdrop-blur-sm rounded-xl border border-white/60 shadow-sm flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500 z-0">
+                <span className="text-slate-500 font-medium tracking-widest uppercase text-sm">{project.title} Preview</span>
               </div>
+              
+              {project.status && (
+                <div className="absolute top-4 right-4 z-20">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/90 backdrop-blur shadow-sm rounded-full text-xs font-semibold text-green-600 border border-green-100">
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    {project.status}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Content */}
-            <div className="p-8 flex flex-col flex-1 bg-white">
-              <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-green-600 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed mb-8 flex-1">
+            <div className="p-6 md:p-8 flex flex-col flex-1">
+              <div className="mb-4">
+                <h3 className="text-2xl font-bold text-slate-900 group-hover:text-green-600 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-slate-500 text-sm font-medium mt-1">{project.subtitle}</p>
+              </div>
+              
+              <p className="text-slate-600 leading-relaxed mb-8 flex-1 text-sm md:text-base">
                 {project.description}
               </p>
               
               {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-100">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {project.tech.map((tech, i) => (
                   <span 
                     key={i} 
-                    className="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 text-xs font-semibold rounded-full"
+                    className="px-3 py-1 bg-slate-50 border border-slate-200 text-slate-600 text-xs font-semibold rounded-full"
                   >
                     {tech}
                   </span>
                 ))}
+              </div>
+
+              {/* Action */}
+              <div className="mt-auto border-t border-slate-100 pt-6">
+                {project.hasViewLiveBtn ? (
+                  <a 
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full md:w-auto px-6 py-3 bg-slate-900 text-white rounded-xl font-medium hover:bg-green-600 transition-colors duration-300 gap-2 group/btn"
+                  >
+                    View Live
+                    <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                  </a>
+                ) : (
+                  <div className="inline-flex items-center gap-2 text-green-600 font-medium">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Live Project</span>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

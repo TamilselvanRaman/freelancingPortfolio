@@ -33,8 +33,8 @@ export default function Hero() {
             Available for new projects
           </motion.div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter text-slate-900 leading-[1.1] mb-6">
-            We build websites that{" "}
+          <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tighter text-slate-900 leading-[1.1] mb-6">
+            We build websites that <br className="hidden md:block" />
             <span className="relative inline-block">
               <span className="relative z-10 text-green-600">grow your business</span>
               <svg className="absolute -bottom-2 left-0 w-full h-3 md:h-4 text-green-300/60 -z-10" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -47,7 +47,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-base md:text-lg text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             I&apos;m Tamil Selvan, a full-stack developer turning complex problems into elegant, high-performing digital solutions.
           </motion.p>
@@ -67,20 +67,52 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Trusted By Logos (Mockup for design) */}
+        {/* Tech Stack Marquee */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="mt-20 pt-10 border-t border-slate-200/60 w-full"
+          className="mt-20 pt-10 border-t border-slate-200/60 w-full overflow-hidden flex flex-col items-center"
         >
-          <p className="text-sm font-medium text-slate-400 mb-6 uppercase tracking-wider">Trusted by innovative companies</p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-60 grayscale">
-            {/* Replace with actual logos, these are placeholders */}
-            <div className="text-xl font-bold font-sans text-slate-800">Acme Corp</div>
-            <div className="text-xl font-bold font-serif text-slate-800">GlobalTech</div>
-            <div className="text-xl font-bold italic text-slate-800">NextGen</div>
-            <div className="text-xl font-bold tracking-widest text-slate-800">STARTUP</div>
+          <p className="text-sm font-medium text-slate-400 mb-8 uppercase tracking-wider">My Tech Stack</p>
+          
+          <div className="w-full relative flex overflow-hidden mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-[var(--background)] to-transparent z-10" />
+            
+            <motion.div 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
+              className="flex whitespace-nowrap gap-8 md:gap-16 items-center opacity-70"
+            >
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="flex gap-8 md:gap-16 items-center">
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">React</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">Next.js</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">Node.js</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">Express</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">MongoDB</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">Firebase</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">Tailwind</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">GSAP</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">SQL</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">Git</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">Vercel</span>
+                  {/* Additional separator at the end of the array to connect perfectly with the next iteration */}
+                  <span className="text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
       </div>

@@ -50,29 +50,29 @@ export default function Services() {
   return (
     <SectionContainer id="services" bg="slate">
       {/* Header Row */}
-      <div className="flex flex-col md:flex-row md:items-end gap-4 mb-8">
+      <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
         <motion.h2 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
         >
-          Services.
+          <span className="bg-green-200 text-green-950 px-3 py-1 inline-block">Services.</span>
         </motion.h2>
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="hidden md:block w-px h-10 bg-slate-300 mx-2 mb-2"
+          className="hidden md:block w-px h-12 bg-slate-300"
         />
         <motion.p 
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-xl md:text-2xl text-slate-500 mb-1"
+          className="text-xl md:text-2xl text-slate-500"
         >
           Everything you need to build, launch, and scale.
         </motion.p>
@@ -91,14 +91,14 @@ export default function Services() {
           <motion.div 
             key={index} 
             variants={itemVariants}
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-green-900/5 transition-all duration-300 border border-slate-100 flex flex-col items-start"
+            whileHover={{ y: -6 }}
+            className="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-300 border border-slate-100 flex flex-col h-full"
           >
-            <div className="p-3 bg-green-50 rounded-xl text-green-600 mb-6">
-              <service.icon className="h-7 w-7" />
+            <div className="w-12 h-12 flex items-center justify-center bg-green-50 rounded-lg text-green-600 mb-6">
+              <service.icon className="h-6 w-6" strokeWidth={1.5} />
             </div>
             <h3 className="text-xl font-semibold text-slate-900 mb-3">{service.title}</h3>
-            <p className="text-slate-600 leading-relaxed text-sm md:text-base">
+            <p className="text-slate-500 leading-relaxed text-sm">
               {service.description}
             </p>
           </motion.div>

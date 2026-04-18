@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
@@ -19,24 +20,26 @@ export default function SectionContainer({
     <section
       id={id}
       className={cn(
-        "py-8 md:py-12 scroll-mt-20 px-4 sm:px-6",
+        "py-16 md:py-24 scroll-mt-0",
+        {
+          "bg-white": bg === "white",
+          "bg-slate-50 border-y border-slate-100": bg === "slate",
+          "bg-slate-900 text-white": bg === "dark",
+          "": bg === "transparent"
+        },
         className
       )}
       {...props}
     >
-      <div 
-        className={cn(
-          "mx-auto max-w-6xl", // slightly smaller max-w so the cards aren't too huge
-          {
-            "bg-white rounded-[2rem] border border-slate-200/60 shadow-[0_4px_40px_rgba(0,0,0,0.03)] p-6 md:p-12": bg === "white",
-            "bg-slate-50/50 rounded-[2rem] border border-slate-100 p-6 md:p-12": bg === "slate",
-            "bg-slate-900 text-white rounded-[2rem] border border-slate-800 shadow-2xl p-6 md:p-12": bg === "dark",
-            "": bg === "transparent"
-          }
-        )}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto max-w-6xl px-4 sm:px-6"
       >
         {children}
-      </div>
+      </motion.div>
     </section>
   );
 }
