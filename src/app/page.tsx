@@ -4,7 +4,6 @@ import Portfolio from "@/components/sections/Portfolio";
 import Pricing from "@/components/sections/Pricing";
 import Testimonials from "@/components/sections/Testimonials";
 import Results from "@/components/sections/Results";
-import About from "@/components/sections/About";
 import CTA from "@/components/sections/CTA";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Results />
       <Pricing />
       <Testimonials />
-      <About />
       <CTA />
     </>
   );

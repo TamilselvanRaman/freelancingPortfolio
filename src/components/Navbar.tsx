@@ -11,7 +11,6 @@ const navigation = [
   { name: "Portfolio", href: "#portfolio" },
   { name: "Pricing", href: "#pricing" },
   { name: "FAQ", href: "#faq" },
-  { name: "About", href: "#about" },
 ];
 
 export default function Navbar() {
