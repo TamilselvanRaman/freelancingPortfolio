@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
+  --background: #f1f5f9; /* slate-100 */
   --foreground: #0f172a;
 }
 
@@ -12,14 +12,14 @@
   --color-secondary: #0f172a;
   --color-accent: #2563eb;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-fredoka), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Optional Dark mode config if we want to override for this project, but we stay minimal light mode as per user's "Light background with dark contrast sections" */
+/* Minimal dark mode config if needed, although user wants a light card-based UI */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
+    --background: #f1f5f9; /* Force light background to maintain the Yashtex design across themes */
+    --foreground: #0f172a;
   }
 }
 

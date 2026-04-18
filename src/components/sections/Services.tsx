@@ -49,26 +49,36 @@ const itemVariants: Variants = {
 export default function Services() {
   return (
     <SectionContainer id="services" bg="slate">
-      <div className="text-center mb-16 md:mb-20">
+      {/* Header Row */}
+      <div className="flex flex-col md:flex-row md:items-end gap-4 mb-8">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight"
         >
-          Specialized Services
+          Services.
         </motion.h2>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="hidden md:block w-px h-10 bg-slate-300 mx-2 mb-2"
+        />
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-lg text-slate-600 max-w-2xl mx-auto"
+          className="text-xl md:text-2xl text-slate-500 mb-1"
         >
-          Everything you need to build, launch, and scale your digital presence under one roof.
+          Everything you need to build, launch, and scale.
         </motion.p>
       </div>
+      
+      <hr className="border-slate-200 mb-12" />
 
       <motion.div 
         variants={containerVariants}

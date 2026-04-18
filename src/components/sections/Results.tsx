@@ -32,33 +32,114 @@ const itemVariants: Variants = {
 
 export default function Results() {
   return (
-    <SectionContainer id="features" bg="slate">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4">
-          Built for Performance
-        </h2>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Every project is built with these core principles to ensure maximum quality and ROI.
-        </p>
+    <SectionContainer id="results" bg="white">
+      {/* Header Row */}
+      <div className="flex flex-col md:flex-row md:items-end gap-4 mb-8">
+        <motion.h2 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight"
+        >
+          Results.
+        </motion.h2>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="hidden md:block w-px h-10 bg-slate-300 mx-2 mb-2"
+        />
+        <motion.p 
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-xl md:text-2xl text-slate-500 mb-1"
+        >
+          Websites built for real business impact.
+        </motion.p>
       </div>
+      
+      <hr className="border-slate-200 mb-12" />
 
+      {/* Chart Illustration */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="w-full bg-slate-50 rounded-3xl p-8 md:p-12 mb-16 border border-slate-200 flex items-center justify-center relative overflow-hidden h-[400px]"
+      >
+        <div className="absolute inset-0 bg-grid-slate-200/[0.4] bg-[size:30px_30px]" />
+        
+        {/* Simple CSS-based Line Chart representation */}
+        <div className="relative w-full h-full max-w-4xl flex items-end justify-between px-4">
+          {/* Vertical axis lines */}
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-slate-200"></div>
+          <div className="absolute left-0 right-0 bottom-0 h-px bg-slate-200"></div>
+          
+          <svg className="absolute inset-0 h-full w-full overflow-visible drop-shadow-xl" preserveAspectRatio="none" viewBox="0 0 100 100">
+            <motion.path
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+              d="M0,80 Q20,70 40,50 T70,30 T100,10"
+              fill="none"
+              stroke="#16a34a"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+            {/* Area under curve */}
+            <motion.path
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1, duration: 1 }}
+              d="M0,80 Q20,70 40,50 T70,30 T100,10 L100,100 L0,100 Z"
+              fill="#16a34a"
+            />
+            {/* Dots */}
+            <circle cx="0" cy="80" r="2" fill="#16a34a" />
+            <circle cx="40" cy="50" r="2" fill="#16a34a" />
+            <circle cx="70" cy="30" r="2" fill="#16a34a" />
+            <circle cx="100" cy="10" r="3" fill="#16a34a" className="animate-pulse" />
+          </svg>
+
+          {/* Floating stat card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1.5 }}
+            className="absolute top-4 right-10 md:right-20 bg-white p-4 rounded-xl shadow-lg border border-slate-100"
+          >
+            <p className="text-sm text-slate-500 font-medium">Conversion Rate</p>
+            <p className="text-3xl font-bold text-green-600">+148%</p>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Features Grid */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto"
+        className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto"
       >
         {features.map((feature, index) => (
           <motion.div 
             key={index}
             variants={itemVariants}
-            className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-green-100 transition-all group"
+            className="flex flex-col items-center justify-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-green-200 transition-all group"
           >
-            <div className="h-12 w-12 bg-slate-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-50 transition-colors">
-              <feature.icon className="h-6 w-6 text-slate-700 group-hover:text-green-600 transition-colors" />
+            <div className="h-16 w-16 bg-white shadow-sm rounded-full flex items-center justify-center mb-4 group-hover:bg-green-50 transition-colors group-hover:scale-110 duration-300">
+              <feature.icon className="h-8 w-8 text-slate-700 group-hover:text-green-600 transition-colors" />
             </div>
-            <h3 className="font-medium text-slate-900 text-center">{feature.name}</h3>
+            <h3 className="font-semibold text-lg text-slate-900 text-center">{feature.name}</h3>
           </motion.div>
         ))}
       </motion.div>

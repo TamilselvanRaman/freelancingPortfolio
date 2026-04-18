@@ -2,7 +2,6 @@
 
 import { motion, Variants } from "framer-motion";
 import SectionContainer from "../SectionContainer";
-import Image from "next/link"; // Next.js image placeholder structure for now
 
 const projects = [
   {
@@ -35,42 +34,52 @@ const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.5, ease: "easeOut" }
   },
 };
 
 export default function Portfolio() {
   return (
     <SectionContainer id="portfolio" bg="white">
-      <div className="text-center mb-16 md:mb-20">
+      {/* Header Row */}
+      <div className="flex flex-col md:flex-row md:items-end gap-4 mb-8">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight"
         >
-          Featured Work
+          Portfolio.
         </motion.h2>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="hidden md:block w-px h-10 bg-slate-300 mx-2 mb-2"
+        />
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-lg text-slate-600 max-w-2xl mx-auto"
+          className="text-xl md:text-2xl text-slate-500 mb-1"
         >
-          A selection of real-world applications I&apos;ve built to solve complex problems and drive business growth.
+          Selected work and projects.
         </motion.p>
       </div>
+      
+      <hr className="border-slate-200 mb-12" />
 
       <motion.div 
         variants={containerVariants}
@@ -83,20 +92,18 @@ export default function Portfolio() {
           <motion.div 
             key={index} 
             variants={itemVariants}
-            className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500"
+            className="group flex flex-col bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:border-green-300 hover:shadow-xl hover:shadow-green-100 transition-all duration-300"
           >
-            {/* Image Container with Zoom effect */}
-            <div className={`relative w-full h-64 md:h-80 overflow-hidden ${project.imageColor} flex items-center justify-center`}>
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent z-10" />
-              {/* This is a placeholder for actual next/image. We use a visual placeholder to maintain the premium feel */}
-              <div className="w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-in-out flex items-center justify-center opacity-50">
+            {/* Image Container */}
+            <div className={`relative w-full h-64 md:h-72 overflow-hidden ${project.imageColor} flex items-center justify-center p-6`}>
+              <div className="w-full h-full bg-white/50 backdrop-blur-sm rounded-xl border border-white/60 shadow-sm flex items-center justify-center transform group-hover:scale-[1.02] transition-transform duration-500">
                 <span className="text-slate-500 font-medium tracking-widest uppercase text-sm">Project Preview</span>
               </div>
             </div>
 
             {/* Content */}
-            <div className="p-8 md:p-10 flex flex-col flex-1">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-green-600 transition-colors">
+            <div className="p-8 flex flex-col flex-1 bg-white">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-green-600 transition-colors">
                 {project.title}
               </h3>
               <p className="text-slate-600 leading-relaxed mb-8 flex-1">
@@ -104,11 +111,11 @@ export default function Portfolio() {
               </p>
               
               {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-100">
                 {project.tech.map((tech, i) => (
                   <span 
                     key={i} 
-                    className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full"
+                    className="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 text-xs font-semibold rounded-full"
                   >
                     {tech}
                   </span>

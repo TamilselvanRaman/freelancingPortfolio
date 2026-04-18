@@ -4,61 +4,84 @@ import { motion } from "framer-motion";
 import { Button } from "../Button";
 import Link from "next/link";
 import SectionContainer from "../SectionContainer";
+import { Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
-    <SectionContainer id="home" className="relative overflow-hidden flex items-center min-h-[90vh]">
-      {/* Background decoration */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-green-100/40 via-slate-50 to-white" />
-      <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] opacity-30 bg-green-200 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] opacity-20 bg-blue-200 rounded-full blur-3xl" />
+    <SectionContainer id="home" className="relative flex flex-col items-center justify-center min-h-[95vh] pt-32 pb-16" bg="transparent">
+      {/* Subtle background blurs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-200/40 rounded-full blur-[100px] -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[100px] -z-10" />
 
-      <div className="relative z-10 w-full flex flex-col items-center text-center">
+      <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-4xl"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full flex flex-col items-center"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-800 text-sm font-semibold mb-6 shadow-sm border border-green-200"
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200 text-slate-800 text-sm font-medium mb-8"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
             Available for new projects
           </motion.div>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
-            I build high-performance websites that <span className="text-green-600">grow your business</span> 🚀
+          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight text-slate-900 leading-[1.1] mb-6">
+            We build websites that{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 text-green-600">grow your business</span>
+              <svg className="absolute -bottom-2 left-0 w-full h-3 md:h-4 text-green-300/60 -z-10" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M2.00031 6.84039C56.667 2.17373 158.8 -3.15961 198 6.84039" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+            </span>
           </h1>
           
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+            transition={{ delay: 0.3, duration: 0.7 }}
             className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Full-stack developer specializing in modern, fast, and scalable web applications. Turning complex problems into elegant digital solutions.
+            I&apos;m Tamil Selvan, a full-stack developer turning complex problems into elegant, high-performing digital solutions.
           </motion.p>
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
           >
-            <Link href="#portfolio" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto">Start Project</Button>
-            </Link>
             <Link href="#contact" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">Book a Call</Button>
+              <Button size="lg" className="w-full sm:w-auto rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-xl shadow-slate-900/10 gap-2 h-14 px-8 text-lg">
+                <Sparkles className="w-5 h-5 text-yellow-300" />
+                Book a call
+              </Button>
             </Link>
           </motion.div>
+        </motion.div>
+
+        {/* Trusted By Logos (Mockup for design) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 1 }}
+          className="mt-20 pt-10 border-t border-slate-200/60 w-full"
+        >
+          <p className="text-sm font-medium text-slate-400 mb-6 uppercase tracking-wider">Trusted by innovative companies</p>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-60 grayscale">
+            {/* Replace with actual logos, these are placeholders */}
+            <div className="text-xl font-bold font-sans text-slate-800">Acme Corp</div>
+            <div className="text-xl font-bold font-serif text-slate-800">GlobalTech</div>
+            <div className="text-xl font-bold italic text-slate-800">NextGen</div>
+            <div className="text-xl font-bold tracking-widest text-slate-800">STARTUP</div>
+          </div>
         </motion.div>
       </div>
     </SectionContainer>

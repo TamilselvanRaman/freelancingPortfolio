@@ -10,6 +10,7 @@ const navigation = [
   { name: "Services", href: "#services" },
   { name: "Portfolio", href: "#portfolio" },
   { name: "Pricing", href: "#pricing" },
+  { name: "FAQ", href: "#faq" },
   { name: "About", href: "#about" },
 ];
 
@@ -28,19 +29,19 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 backdrop-blur-md",
-        scrolled ? "bg-white/80 shadow-sm border-b border-slate-200/50" : "bg-transparent"
+        "fixed top-0 z-50 w-full transition-all duration-300 backdrop-blur-md",
+        scrolled ? "bg-[#f1f5f9]/90 shadow-sm border-b border-slate-200/50" : "bg-transparent"
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:p-6 md:px-8" aria-label="Global">
         <div className="flex md:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 text-xl font-bold tracking-tight text-slate-900">
-            Tamil<span className="text-green-600">Selvan</span>
+          <Link href="/" className="-m-1.5 p-1.5 text-2xl font-bold tracking-tight text-slate-900">
+            Tamil<span className="text-green-600">Selvan.</span>
           </Link>
         </div>
         
         {/* Mobile menu button */}
-        <div className="flex md:hidden">
+        <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
@@ -52,7 +53,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop navigation */}
-        <div className="hidden md:flex md:gap-x-8">
+        <div className="hidden lg:flex lg:gap-x-8 bg-white/50 px-6 py-2 rounded-full border border-slate-200/50 shadow-sm">
           {navigation.map((item) => (
             <Link key={item.name} href={item.href} className="text-sm font-medium leading-6 text-slate-700 hover:text-green-600 transition-colors">
               {item.name}
@@ -60,9 +61,9 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex md:flex-1 md:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link href="#contact">
-            <Button>Start Project</Button>
+            <Button className="rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-md">Book a call</Button>
           </Link>
         </div>
       </nav>
@@ -70,14 +71,14 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         className={cn(
-          "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300 md:hidden",
+          "fixed inset-0 z-50 bg-[#f1f5f9]/95 backdrop-blur-sm transition-all duration-300 lg:hidden",
           mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
-        <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-4 py-4 sm:px-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10">
+        <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#f1f5f9] px-4 py-4 sm:px-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10">
           <div className="flex items-center justify-between">
-            <Link href="/" className="-m-1.5 p-1.5 text-xl font-bold tracking-tight" onClick={() => setMobileMenuOpen(false)}>
-              Tamil<span className="text-green-600">Selvan</span>
+            <Link href="/" className="-m-1.5 p-1.5 text-2xl font-bold tracking-tight text-slate-900" onClick={() => setMobileMenuOpen(false)}>
+              Tamil<span className="text-green-600">Selvan.</span>
             </Link>
             <button
               type="button"
@@ -95,7 +96,7 @@ export default function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-900 hover:bg-slate-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-900 hover:bg-white"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -104,7 +105,7 @@ export default function Navbar() {
               </div>
               <div className="py-6">
                 <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full">Start Project</Button>
+                  <Button className="w-full rounded-full bg-slate-900 text-white">Book a call</Button>
                 </Link>
               </div>
             </div>
