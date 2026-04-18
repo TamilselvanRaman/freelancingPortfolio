@@ -28,9 +28,9 @@ export default function SectionContainer({
         className={cn(
           "mx-auto max-w-6xl", // slightly smaller max-w so the cards aren't too huge
           {
-            "bg-white rounded-[2rem] border border-slate-200 shadow-sm p-6 md:p-12": bg === "white",
-            "bg-slate-50 rounded-[2rem] p-6 md:p-12": bg === "slate",
-            "bg-slate-900 text-white rounded-[2rem] p-6 md:p-12": bg === "dark",
+            "bg-white rounded-[2rem] border border-slate-200/60 shadow-[0_4px_40px_rgba(0,0,0,0.03)] p-6 md:p-12": bg === "white",
+            "bg-slate-50/50 rounded-[2rem] border border-slate-100 p-6 md:p-12": bg === "slate",
+            "bg-slate-900 text-white rounded-[2rem] border border-slate-800 shadow-2xl p-6 md:p-12": bg === "dark",
             "": bg === "transparent"
           }
         )}

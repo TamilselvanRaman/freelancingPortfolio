@@ -12,7 +12,7 @@
   --color-secondary: #0f172a;
   --color-accent: #2563eb;
 
-  --font-sans: var(--font-fredoka), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Minimal dark mode config if needed, although user wants a light card-based UI */

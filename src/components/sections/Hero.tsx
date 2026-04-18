@@ -10,8 +10,8 @@ export default function Hero() {
   return (
     <SectionContainer id="home" className="relative flex flex-col items-center justify-center min-h-[95vh] pt-32 pb-16" bg="transparent">
       {/* Subtle background blurs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-200/40 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[100px] -z-10" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-200/20 rounded-full blur-[100px] -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-slate-200/30 rounded-full blur-[100px] -z-10" />
 
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
         <motion.div
@@ -33,7 +33,7 @@ export default function Hero() {
             Available for new projects
           </motion.div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight text-slate-900 leading-[1.1] mb-6">
+          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter text-slate-900 leading-[1.1] mb-6">
             We build websites that{" "}
             <span className="relative inline-block">
               <span className="relative z-10 text-green-600">grow your business</span>
