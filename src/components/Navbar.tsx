@@ -182,7 +182,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
                       contactSection.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
-                  className="w-full rounded-2xl py-6 text-lg font-bold flex items-center justify-center gap-3"
+                  className="w-full rounded-2xl py-6 text-lg font-bold flex items-center justify-center gap-3 ml-10"
                 >
                   Book a strategic call
                 </Button>
