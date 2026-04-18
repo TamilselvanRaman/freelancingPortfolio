@@ -1,242 +1,223 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import { Smartphone, Zap, Search, Layers, Code2, ShieldCheck } from "lucide-react";
+import { motion } from "framer-motion";
+import { Laptop, Target, Calendar, ShieldCheck, CheckCircle2 } from "lucide-react";
+import SectionContainer from "../SectionContainer";
 
 const stats = [
-  { value: 10, suffix: "+", label: "Projects Delivered" },
-  { value: 100, suffix: "%", label: "Client Satisfaction" },
-  { value: 3, suffix: "x", label: "Avg. Performance Boost" },
-  { value: 24, suffix: "/7", label: "Support Available" },
+  { label: "OnPage SEO", desc: "Ready to be found on Google." },
+  { label: "Tracking & Analytics", desc: "Track user statistics, marketing cookies and more." },
+  { label: "100% Responsive", desc: "Optimized for desktop, tablet, mobile and everything in between." },
+  { label: "ROI-First", desc: "So you get the most out of your ad budget." },
 ];
 
-const pillars = [
-  { icon: Smartphone, label: "100% Responsive" },
-  { icon: Zap,        label: "Fast Load Times" },
-  { icon: Search,     label: "SEO Optimized" },
-  { icon: Layers,     label: "Scalable Architecture" },
-  { icon: Code2,      label: "Clean Code" },
-  { icon: ShieldCheck,label: "Secure Systems" },
+const tags = [
+  { text: "Copy", top: "10%", left: "5%", rotate: -8 },
+  { text: "Development", top: "5%", left: "45%", rotate: 5 },
+  { text: "Google", top: "40%", left: "15%", rotate: 3 },
+  { text: "Hosting", top: "35%", left: "55%", rotate: -4 },
+  { text: "Support", top: "70%", left: "10%", rotate: -2 },
+  { text: "Strategy", top: "65%", left: "50%", rotate: 6 },
+  { text: "SEO", top: "85%", left: "35%", rotate: -10 },
 ];
-
-/* Animated counter */
-function Counter({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setStarted(true); },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    let frame: number;
-    const duration = 1800;
-    const start = performance.now();
-    const animate = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) frame = requestAnimationFrame(animate);
-      else setCount(target);
-    };
-    frame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frame);
-  }, [started, target]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
 
 export default function Results() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-  const lineProgress = useSpring(useTransform(scrollYProgress, [0.05, 0.5], [0, 1]), { stiffness: 80, damping: 20 });
-
   return (
-    <section ref={sectionRef} id="results" className="py-12 sm:py-16 md:py-24 bg-white overflow-hidden">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+    <SectionContainer id="results" bg="white">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-baseline gap-4 mb-12 sm:mb-16">
+        <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 tracking-tight">
+          Results.
+        </h2>
+        <p className="text-lg sm:text-xl text-slate-400 font-medium tracking-tight">
+          Websites optimized for real results.
+        </p>
+      </div>
 
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4 mb-6 sm:mb-8">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight"
-          >
-            Results.
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="hidden sm:block w-px h-10 bg-slate-300 mx-2 mb-2"
-          />
-          <motion.p
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-base sm:text-xl md:text-2xl text-slate-500 mb-1"
-          >
-            Websites built for real business impact.
-          </motion.p>
-        </div>
-
+      {/* Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
+        
+        {/* Growth Trajectory Card - Spans 8 cols */}
         <motion.div
-          initial={{ scaleX: 0, originX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="h-px bg-slate-200 mb-12 sm:mb-16"
-        />
-
-        {/* ── STATS ROW ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-14 sm:mb-20">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="relative bg-slate-50 rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col items-center justify-center text-center overflow-hidden group hover:border-green-300 transition-colors duration-300"
-            >
-              {/* Subtle corner accent */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-green-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <p className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-1 tabular-nums">
-                <Counter target={stat.value} suffix={stat.suffix} />
-              </p>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium leading-tight">{stat.label}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ── CHART PANEL ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden mb-14 sm:mb-20 border border-slate-800"
+          className="md:col-span-8 bg-slate-50 rounded-[2.5rem] p-6 sm:p-10 border border-slate-100 relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow duration-500"
         >
-          {/* Glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-transparent" />
+          {/* Decorative dots in corners */}
+          <div className="absolute top-10 left-10 flex gap-2.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-200" />
+          </div>
+          <div className="absolute top-16 left-10 w-2.5 h-2.5 rounded-full bg-green-500" />
 
-          <div className="relative z-10 p-6 sm:p-10">
-            {/* Chart header */}
-            <div className="flex items-start justify-between mb-6 sm:mb-8">
-              <div>
-                <p className="text-slate-400 text-xs sm:text-sm font-medium uppercase tracking-widest mb-1">Growth Trajectory</p>
-                <p className="text-white text-xl sm:text-2xl font-bold">Business Impact Over Time</p>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+          {/* Graph Placeholder / SVG */}
+          <div className="mt-16 relative h-48 sm:h-72">
+            <svg className="w-full h-full overflow-visible" viewBox="0 0 400 200" preserveAspectRatio="none">
+              {/* Dotted lines background */}
+              <line x1="0" y1="50" x2="400" y2="50" stroke="#e2e8f0" strokeDasharray="4 4" strokeWidth="1" />
+              <line x1="0" y1="100" x2="400" y2="100" stroke="#e2e8f0" strokeDasharray="4 4" strokeWidth="1" />
+              <line x1="0" y1="150" x2="400" y2="150" stroke="#e2e8f0" strokeDasharray="4 4" strokeWidth="1" />
+              
+              <motion.path
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.8 }}
-                className="bg-green-500/10 border border-green-500/30 rounded-xl px-4 py-2 text-right"
-              >
-                <p className="text-green-400 text-xs font-medium">Conversion Rate</p>
-                <p className="text-green-300 text-2xl font-black">+148%</p>
-              </motion.div>
-            </div>
-
-            {/* SVG Chart */}
-            <div className="relative h-[180px] sm:h-[220px]">
-              {/* Y-axis labels */}
-              <div className="absolute left-0 top-0 h-full flex flex-col justify-between pr-3">
-                {["100%", "75%", "50%", "25%", "0%"].map((l) => (
-                  <span key={l} className="text-slate-600 text-[10px] sm:text-xs leading-none">{l}</span>
-                ))}
-              </div>
-
-              <div className="absolute left-8 right-0 top-0 bottom-5">
-                {/* Grid lines */}
-                {[0, 25, 50, 75, 100].map((pct) => (
-                  <div key={pct} className="absolute w-full border-t border-slate-700/50" style={{ top: `${100 - pct}%` }} />
-                ))}
-
-                <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  {/* Area fill */}
-                  <motion.path
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 1, duration: 0.8 }}
-                    d="M0,90 C15,80 25,70 40,55 S65,30 80,20 S95,12 100,8 L100,100 L0,100 Z"
-                    fill="url(#areaGrad)"
-                  />
-                  {/* Main line */}
-                  <motion.path
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 2.2, ease: "easeInOut" }}
-                    d="M0,90 C15,80 25,70 40,55 S65,30 80,20 S95,12 100,8"
-                    fill="none"
-                    stroke="#22c55e"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  />
-                  {/* Glowing dot at end */}
-                  <motion.circle
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 2 }}
-                    cx="100" cy="8" r="3" fill="#22c55e"
-                    className="animate-pulse"
-                  />
-                  <defs>
-                    <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#22c55e" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="#22c55e" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
-              {/* X-axis labels */}
-              <div className="absolute bottom-0 left-8 right-0 flex justify-between">
-                {["Q1", "Q2", "Q3", "Q4"].map((q) => (
-                  <span key={q} className="text-slate-500 text-[10px] sm:text-xs">{q}</span>
-                ))}
-              </div>
-            </div>
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                d="M0,180 L40,170 L80,175 L120,130 L160,150 L200,120 L240,140 L280,110 L320,115 L360,90 L400,75"
+                fill="none"
+                stroke="#22c55e"
+                strokeWidth="4"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                className="drop-shadow-[0_4px_12px_rgba(34,197,94,0.3)]"
+              />
+              
+              {/* Dots on points */}
+              {[
+                [40, 170], [120, 130], [200, 120], [280, 110], [400, 75]
+              ].map(([x, y], i) => (
+                <motion.circle 
+                  key={i} 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1 + i * 0.1 }}
+                  cx={x} cy={y} r="5" fill="white" stroke="#22c55e" strokeWidth="2.5" 
+                />
+              ))}
+            </svg>
+            <div className="absolute inset-0 bg-gradient-to-t from-green-50/40 to-transparent pointer-events-none" />
           </div>
         </motion.div>
 
-        {/* ── PILLARS GRID ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-          {pillars.map((pillar, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.4 }}
-              whileHover={{ y: -4 }}
-              className="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl hover:border-green-300 hover:bg-green-50/50 transition-all duration-300"
-            >
-              <div className="w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-xl border border-slate-200 group-hover:border-green-200 flex items-center justify-center shrink-0 shadow-sm transition-colors">
-                <pillar.icon className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600 group-hover:text-green-600 transition-colors" strokeWidth={1.8} />
+        {/* List Card - Spans 4 cols */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="md:col-span-4 bg-white p-4 sm:p-6 flex flex-col justify-center"
+        >
+          <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-10 leading-[1.1] tracking-tight">
+            Websites built for real business results
+          </h3>
+          <div className="space-y-8">
+            {stats.map((stat, i) => (
+              <div key={i} className="group">
+                <h4 className="font-bold text-slate-900 text-lg mb-1 group-hover:text-green-600 transition-colors">{stat.label}</h4>
+                <p className="text-sm text-slate-500 leading-relaxed max-w-[280px]">{stat.desc}</p>
               </div>
-              <span className="text-sm sm:text-base font-semibold text-slate-800">{pillar.label}</span>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Full-Service Card - Spans 7 cols */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="md:col-span-7 bg-slate-50 rounded-[2.5rem] p-8 sm:p-12 border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-12 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500"
+        >
+          <div className="max-w-[260px] relative z-10">
+            <h3 className="text-3xl font-bold text-slate-900 mb-3 italic tracking-tight">Full-Service A to Z</h3>
+            <p className="text-slate-500 leading-relaxed">
+              Benefit from top-notch service and comfort from start to finish.
+            </p>
+          </div>
+          
+          {/* Tags cloud graphic - Exactly as in image */}
+          <div className="relative w-full h-[200px] sm:w-[300px] shrink-0">
+            {tags.map((tag, i) => (
+              <motion.div
+                key={tag.text}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.05 }}
+                whileHover={{ y: -5, scale: 1.05, zIndex: 50 }}
+                className="absolute px-5 py-2.5 bg-slate-800 text-white text-sm font-bold rounded-2xl shadow-xl cursor-default border border-slate-700 whitespace-nowrap"
+                style={{
+                  top: tag.top,
+                  left: tag.left,
+                  transform: `rotate(${tag.rotate}deg)`,
+                }}
+              >
+                {tag.text}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Performance Card - Spans 5 cols */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="md:col-span-5 bg-slate-50 rounded-[2.5rem] p-8 sm:p-12 border border-slate-100 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-500"
+        >
+          <div>
+            <h3 className="text-3xl font-bold text-slate-900 mb-3 italic tracking-tight">Lightning-Fast Load Times</h3>
+            <p className="text-slate-500 leading-relaxed">
+              Because nobody likes waiting.
+            </p>
+          </div>
+          
+          {/* Performance circles */}
+          <div className="mt-12 flex items-center justify-end relative h-32">
+            <div className="absolute right-0 w-32 h-32 rounded-full border-[8px] border-green-500 flex items-center justify-center text-4xl font-black text-slate-900 bg-white shadow-2xl z-20">
+              100
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full border-2 border-slate-100 flex items-center justify-center text-[11px] font-black text-slate-400 shadow-md">97</div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full border-2 border-slate-100 flex items-center justify-center text-[11px] font-black text-slate-400 shadow-md">94</div>
+              
+              {/* Outer pulsing ring */}
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.1, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute inset-[-12px] border-2 border-green-200 rounded-full"
+              />
+            </div>
+            <div className="mr-16 w-24 h-24 rounded-full border-8 border-slate-200 opacity-20" />
+          </div>
+        </motion.div>
+
+        {/* Bottom Small Cards */}
+        {[
+          { icon: Laptop, label: "Perfectly Integrated", color: "text-blue-500" },
+          { icon: Target, label: "Built to Scale", color: "text-cyan-500" },
+          { label: "Easy to Edit", pill: "Mon - Fri: 10 -", pillColor: "text-green-600 bg-green-50 border-green-100" },
+          { label: "Secure & Compliant", pill: "GDPR", sub: "Compliant", hasCheck: true, pillColor: "text-green-600 bg-green-50 border-green-100" }
+        ].map((card, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 + (i * 0.1) }}
+            className="md:col-span-3 bg-white border border-slate-100 rounded-[2rem] p-8 flex flex-col items-center justify-center text-center group hover:border-green-200 transition-all duration-300 cursor-default shadow-sm hover:shadow-xl hover:-translate-y-1"
+          >
+            {card.icon && (
+              <div className={`w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                <card.icon className={`w-8 h-8 ${card.color}`} strokeWidth={1.5} />
+              </div>
+            )}
+            
+            {card.pill && (
+              <div className="mb-6 flex items-center gap-2">
+                <div className={`px-5 py-2 rounded-full border ${card.pillColor} text-[11px] font-black tracking-widest uppercase flex items-center gap-2 shadow-sm`}>
+                  {card.pill} {card.hasCheck && <CheckCircle2 className="w-4 h-4 fill-green-500 text-white" />}
+                </div>
+              </div>
+            )}
+
+            <p className="font-black text-slate-900 text-sm tracking-tight uppercase">{card.label}</p>
+            {card.sub && <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1.5">{card.sub}</p>}
+          </motion.div>
+        ))}
 
       </div>
-    </section>
+    </SectionContainer>
   );
 }

@@ -2,6 +2,25 @@
 
 import { motion, type Variants } from "framer-motion";
 import { Globe, Layers, Smartphone } from "lucide-react";
+import { 
+  ReactLogo, 
+  NextJsLogo, 
+  FirebaseLogo, 
+  TailwindLogo, 
+  NodeJsLogo, 
+  FigmaLogo,
+  TypeScriptLogo
+} from "../Icons";
+
+const techIcons: { [key: string]: React.ReactNode } = {
+  "Next.js": <NextJsLogo className="w-3.5 h-3.5" />,
+  "React": <ReactLogo className="w-3.5 h-3.5" />,
+  "Node.js": <NodeJsLogo className="w-3.5 h-3.5" />,
+  "Firebase": <FirebaseLogo className="w-3.5 h-3.5" />,
+  "Figma": <FigmaLogo className="w-3.5 h-3.5" />,
+  "Tailwind CSS": <TailwindLogo className="w-3.5 h-3.5" />,
+  "TypeScript": <TypeScriptLogo className="w-3.5 h-3.5" />,
+};
 
 const services = [
   {
@@ -161,10 +180,12 @@ export default function Services() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 + index * 0.1 + i * 0.05 }}
-                      className="px-2.5 py-1 bg-slate-50 border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-medium rounded-full group-hover:border-slate-300 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-200 text-slate-600 text-[10px] font-bold rounded-full group-hover:border-slate-300 transition-colors shadow-sm"
                     >
+                      {techIcons[tag] || null}
                       {tag}
                     </motion.span>
+
                   ))}
                 </div>
               </div>

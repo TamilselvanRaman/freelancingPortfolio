@@ -4,14 +4,25 @@ import { motion } from "framer-motion";
 import { Button } from "../Button";
 import Link from "next/link";
 import SectionContainer from "../SectionContainer";
-import { Sparkles } from "lucide-react";
+import { PremiumSparkle, ReactLogo, NextJsLogo, NodeJsLogo, FirebaseLogo, TailwindLogo, MongoDBLogo, DockerLogo, TypeScriptLogo } from "../Icons";
+import { ArrowRight } from "lucide-react";
 
 const techStack = [
-  "React", "Next.js", "Node.js", "Express",
-  "MongoDB", "Firebase", "Tailwind", "GSAP", "SQL", "Git", "Vercel",
+  { name: "React", icon: ReactLogo },
+  { name: "Next.js", icon: NextJsLogo },
+  { name: "TypeScript", icon: TypeScriptLogo },
+  { name: "Node.js", icon: NodeJsLogo },
+  { name: "Firebase", icon: FirebaseLogo },
+  { name: "Tailwind", icon: TailwindLogo },
+  { name: "MongoDB", icon: MongoDBLogo },
+  { name: "Docker", icon: DockerLogo },
 ];
 
-export default function Hero() {
+interface HeroProps {
+  onContactClick?: () => void;
+}
+
+export default function Hero({ onContactClick }: HeroProps) {
   return (
     <SectionContainer id="home" className="relative flex flex-col items-center justify-center min-h-[90vh] sm:min-h-[95vh] pt-24 sm:pt-32 pb-12 sm:pb-16" bg="transparent">
       {/* Subtle background blurs */}
@@ -51,12 +62,21 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full"
           >
-            <Link href="#contact" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-xl shadow-slate-900/10 gap-2 h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-300" />
-                Book a call
-              </Button>
-            </Link>
+            <Button 
+              variant="premium"
+              onClick={() => {
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              size="lg" 
+              className="w-full sm:w-auto rounded-full gap-3 h-14 sm:h-16 px-10 sm:px-12 text-lg sm:text-xl transition-all group"
+            >
+              <PremiumSparkle className="w-6 h-6 text-yellow-400 group-hover:rotate-12 transition-transform" />
+              <span className="font-black tracking-tight uppercase">Let's Create Something Amazing</span>
+              <ArrowRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </Button>
           </motion.div>
         </motion.div>
 
@@ -75,16 +95,16 @@ export default function Hero() {
 
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-              className="flex whitespace-nowrap gap-6 sm:gap-10 md:gap-16 items-center opacity-70"
+              transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
+              className="flex whitespace-nowrap gap-12 sm:gap-20 md:gap-32 items-center"
             >
               {[...Array(2)].map((_, i) => (
-                <div key={i} className="flex gap-6 sm:gap-10 md:gap-16 items-center">
+                <div key={i} className="flex gap-12 sm:gap-20 md:gap-32 items-center">
                   {techStack.map((tech, j) => (
-                    <>
-                      <span key={`${i}-${j}`} className="text-base sm:text-xl md:text-2xl font-bold font-sans text-slate-800">{tech}</span>
-                      <span key={`dot-${i}-${j}`} className="text-base sm:text-xl md:text-2xl font-bold font-sans text-slate-800">•</span>
-                    </>
+                    <div key={`${i}-${j}`} className="flex items-center gap-3 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                      <tech.icon className="w-6 h-6 sm:w-8 sm:h-8" />
+                      <span className="text-sm sm:text-base md:text-lg font-bold font-sans text-slate-800 tracking-tight">{tech.name}</span>
+                    </div>
                   ))}
                 </div>
               ))}
