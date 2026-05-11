@@ -48,6 +48,23 @@ const projects = [
   },
   {
     index: "02",
+    title: "AstroShastra",
+    subtitle: "Vedic Astrology Platform",
+    role: "Full-Stack Developer & UI Architect",
+    tech: ["Next.js", "Firebase", "Tailwind CSS", "TypeScript"],
+    description:
+      "A sophisticated spiritual consultation platform bridging ancient Vedic wisdom with modern technology. Features include real-time horoscope generation, automated birth chart analysis, and a comprehensive admin ecosystem for lead management.",
+    outcome: "Facilitated over 1,500+ consultations with a 4.9/5 user satisfaction rate.",
+    url: "https://nakshatrahub.in/",
+    image: "/projectImages/VedicAstrology.png",
+    hasViewLiveBtn: true,
+    status: "Active Production",
+    accent: "bg-purple-600",
+    labelColor: "text-purple-600",
+    labelBg: "bg-purple-50 border-purple-100",
+  },
+  {
+    index: "03",
     title: "UNI_BRAINS",
     subtitle: "Healthcare Access Platform",
     role: "Product Architect",
@@ -61,22 +78,6 @@ const projects = [
     accent: "bg-blue-600",
     labelColor: "text-blue-600",
     labelBg: "bg-blue-50 border-blue-100",
-  },
-  {
-    index: "03",
-    title: "AstroShastra",
-    subtitle: "Vedic Astrology Platform",
-    role: "Full-Stack Developer & UI Architect",
-    tech: ["Next.js", "Firebase", "Tailwind CSS", "TypeScript"],
-    description:
-      "A sophisticated spiritual consultation platform bridging ancient Vedic wisdom with modern technology. Features include real-time horoscope generation, automated birth chart analysis, and a comprehensive admin ecosystem for lead management.",
-    outcome: "Facilitated over 1,500+ consultations with a 4.9/5 user satisfaction rate.",
-    image: "/projectImages/VedicAstrology.png",
-    hasViewLiveBtn: false,
-    status: "Active Production",
-    accent: "bg-purple-600",
-    labelColor: "text-purple-600",
-    labelBg: "bg-purple-50 border-purple-100",
   },
 ];
 
