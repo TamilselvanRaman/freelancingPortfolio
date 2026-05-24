@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Button } from "../Button";
-import SectionContainer from "../SectionContainer";
 import { PremiumSparkle, ReactLogo, NextJsLogo, NodeJsLogo, FirebaseLogo, TailwindLogo, MongoDBLogo, DockerLogo, TypeScriptLogo } from "../Icons";
 import { ArrowRight } from "lucide-react";
 
@@ -73,12 +72,7 @@ export default function Hero({ onContactClick }: HeroProps) {
           >
             <Button
               variant="premium"
-              onClick={() => {
-                const contactSection = document.getElementById("contact");
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              onClick={onContactClick}
               size="lg"
               className="w-full sm:w-auto rounded-[2rem] gap-2 sm:gap-3 h-auto min-h-[4rem] py-3 sm:py-0 sm:h-16 px-6 sm:px-12 text-sm sm:text-xl transition-all group !whitespace-normal text-center"
             >

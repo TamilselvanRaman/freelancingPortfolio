@@ -6,8 +6,6 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "./Button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { PremiumSparkle } from "./Icons";
-
 const navigation = [
   { name: "Services", href: "#services" },
   { name: "Portfolio", href: "#portfolio" },
@@ -16,11 +14,7 @@ const navigation = [
   { name: "Testimonials", href: "#testimonials" },
 ];
 
-interface NavbarProps {
-  onContactClick?: () => void;
-}
-
-export default function Navbar({ onContactClick }: NavbarProps) {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 

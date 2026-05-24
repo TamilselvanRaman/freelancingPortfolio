@@ -55,7 +55,7 @@ export default function ContactForm({ isModal = false }: ContactFormProps) {
       });
       setSuccess(true);
       setFormData({ name: "", email: "", phone: "", project: projectTypes[0], message: "" });
-    } catch (err: any) {
+    } catch (err) {
       console.error("Error adding document: ", err);
       setError("Something went wrong. Please try again later.");
     } finally {

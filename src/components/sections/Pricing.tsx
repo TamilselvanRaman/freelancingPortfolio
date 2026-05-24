@@ -62,8 +62,6 @@ const cardVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-import { Button } from "@/components/Button";
-
 interface PricingProps {
   onContactClick?: () => void;
 }
@@ -137,6 +135,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
               }}
               whileTap={{ scale: plan.popular ? 1.04 : 0.99 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
+              onClick={onContactClick}
               className={cn(
                 "relative rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col cursor-pointer",
                 plan.popular

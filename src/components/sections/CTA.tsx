@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "../ContactForm";
-import { GitHubLogo, LinkedInLogo, TwitterLogo } from "../Icons";
 
 export default function CTA() {
   return (
@@ -53,7 +52,7 @@ export default function CTA() {
               <div className="mb-12">
                 <h3 className="text-2xl font-bold text-white mb-6">Strategic Partnership</h3>
                 <p className="text-slate-400 text-lg leading-relaxed mb-8">
-                  Whether you're launching a new venture or scaling an existing enterprise, 
+                  Whether you&apos;re launching a new venture or scaling an existing enterprise, 
                   I provide the technical expertise to ensure your digital success.
                 </p>
               </div>
@@ -107,7 +106,7 @@ export default function CTA() {
             <div className="p-8 sm:p-12 lg:p-20 lg:col-span-7 bg-slate-900/50 backdrop-blur-sm">
               <div className="mb-10">
                 <h4 className="text-xl font-bold text-white mb-2">Initialize Project</h4>
-                <p className="text-slate-500 text-sm">Fill out the form below and I'll get back to you with a strategic proposal.</p>
+                <p className="text-slate-500 text-sm">Fill out the form below and I&apos;ll get back to you with a strategic proposal.</p>
               </div>
               <ContactForm />
             </div>

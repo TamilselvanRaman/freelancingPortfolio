@@ -106,7 +106,7 @@ export default function Testimonials() {
             >
               {/* Large decorative quote watermark */}
               <div className="absolute -top-4 -right-2 text-[120px] sm:text-[160px] font-black leading-none select-none pointer-events-none opacity-10 text-slate-900">
-                "
+                &ldquo;
               </div>
 
               {/* Stars */}

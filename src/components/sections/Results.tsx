@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Laptop, Target, Calendar, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Laptop, Target, CheckCircle2 } from "lucide-react";
 import SectionContainer from "../SectionContainer";
 
 const stats = [
