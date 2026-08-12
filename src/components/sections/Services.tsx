@@ -83,7 +83,7 @@ const cardVariants: Variants = {
 
 export default function Services() {
   return (
-    <section id="services" className="py-12 sm:py-16 md:py-24 bg-slate-50 border-y border-slate-100">
+    <section id="services" className="scroll-mt-28 pt-24 sm:pt-32 pb-16 sm:pb-24 bg-slate-50 border-y border-slate-100 relative z-10">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
 
         {/* Header */}

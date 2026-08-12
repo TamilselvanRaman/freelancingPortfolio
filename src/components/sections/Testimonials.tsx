@@ -6,9 +6,9 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     content:
-      "Tamil Selvan transformed our vision into reality. The UI quality is exceptional, and the web app loads incredibly fast. Professional, communicative, and delivered ahead of schedule.",
+      "Tamil Selvan transformed our vision for Vasandhamherbals into reality. The UI quality is exceptional, and our product catalog loads blazingly fast. He handled Firebase authentication and Razorpay payment integration seamlessly. Delivered ahead of schedule!",
     author: "Sarah J.",
-    role: "Startup Founder",
+    role: "Founder, Herbal Cosmetics",
     rating: 5,
     gradient: "from-green-50 to-emerald-50",
     avatarGradient: "from-green-400 to-emerald-500",
@@ -17,20 +17,64 @@ const testimonials = [
   },
   {
     content:
-      "One of the best developers I've worked with. He understood exactly what we needed and built a scalable solution that our users love. Highly recommend for any serious project.",
-    author: "Michael T.",
-    role: "Product Manager",
+      "Outstanding developer! Tamil architected our AstroShastra Vedic Astrology platform with extreme care. The real-time horoscope generation and dynamic kundali chart calculations run flawlessly. Highly recommend for any complex web application.",
+    author: "Rajesh K.",
+    role: "Product Director, NakshatraHub",
     rating: 5,
-    gradient: "from-blue-50 to-indigo-50",
-    avatarGradient: "from-blue-400 to-indigo-500",
+    gradient: "from-purple-50 to-indigo-50",
+    avatarGradient: "from-purple-400 to-indigo-500",
+    border: "border-purple-100",
+    glow: "rgba(168,85,247,0.12)",
+  },
+  {
+    content:
+      "Built our GPS geofenced workforce management system from scratch. His attention to detail in handling offline sync and real-time tracking modules saved us hundreds of dev hours. One of the sharpest full-stack developers I've collaborated with.",
+    author: "Michael T.",
+    role: "Operations Lead, ServeSync",
+    rating: 5,
+    gradient: "from-blue-50 to-cyan-50",
+    avatarGradient: "from-blue-400 to-cyan-500",
     border: "border-blue-100",
-    glow: "rgba(99,102,241,0.12)",
+    glow: "rgba(59,130,246,0.12)",
+  },
+  {
+    content:
+      "We needed a high-impact travel website prototype to pitch to stakeholders. Tamil delivered a crisp, responsive, and animated demo in record time. The client review was a massive success!",
+    author: "Kavitha R.",
+    role: "Project Owner, LID Travel",
+    rating: 5,
+    gradient: "from-amber-50 to-orange-50",
+    avatarGradient: "from-amber-400 to-orange-500",
+    border: "border-amber-100",
+    glow: "rgba(245,158,11,0.12)",
+  },
+  {
+    content:
+      "Extremely skilled with Next.js, Tailwind CSS, and database architecture. He migrated our legacy store into a clean, modern Next.js ecosystem without a single hitch or minute of downtime. Superb communication throughout.",
+    author: "David M.",
+    role: "Tech Lead, E-Commerce Solutions",
+    rating: 5,
+    gradient: "from-teal-50 to-emerald-50",
+    avatarGradient: "from-teal-400 to-emerald-500",
+    border: "border-teal-100",
+    glow: "rgba(20,184,166,0.12)",
+  },
+  {
+    content:
+      "Working with Tamil felt like adding a senior engineer to our core team. He doesn't just write code — he actively suggests UI improvements and optimizes query performance. Truly top-tier engineering talent.",
+    author: "Priya N.",
+    role: "SaaS Startup Co-Founder",
+    rating: 5,
+    gradient: "from-rose-50 to-pink-50",
+    avatarGradient: "from-rose-400 to-pink-500",
+    border: "border-rose-100",
+    glow: "rgba(244,63,94,0.12)",
   },
 ];
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
 const cardVariants: Variants = {
@@ -52,7 +96,7 @@ export default function Testimonials() {
       <div className="absolute top-0 right-1/4 w-[500px] h-[300px] bg-green-100/50 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[200px] bg-blue-100/40 blur-[80px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
 
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -92,7 +136,7 @@ export default function Testimonials() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
         >
           {testimonials.map((t, index) => (
             <motion.div

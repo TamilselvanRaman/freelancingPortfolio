@@ -1,10 +1,13 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Laptop, Target, CheckCircle2 } from "lucide-react";
 import SectionContainer from "../SectionContainer";
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-const stats = [
+const defaultStats = [
   { label: "OnPage SEO", desc: "Ready to be found on Google." },
   { label: "Tracking & Analytics", desc: "Track user statistics, marketing cookies and more." },
   { label: "100% Responsive", desc: "Optimized for desktop, tablet, mobile and everything in between." },
@@ -22,6 +25,32 @@ const tags = [
 ];
 
 export default function Results() {
+  const [data, setData] = useState({
+    title: "Websites built for real business results",
+    subtitle: "Websites optimized for real results.",
+    stats: defaultStats
+  });
+
+  useEffect(() => {
+    async function fetchResultsContent() {
+      try {
+        const docRef = doc(db, "sections_content", "results");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const fetched = docSnap.data();
+          setData({
+            title: fetched.title || "Websites built for real business results",
+            subtitle: fetched.subtitle || "Websites optimized for real results.",
+            stats: Array.isArray(fetched.stats) ? fetched.stats : defaultStats
+          });
+        }
+      } catch (err) {
+        console.error("Error loading results configs:", err);
+      }
+    }
+    fetchResultsContent();
+  }, []);
+
   return (
     <SectionContainer id="results" bg="white">
       {/* Header */}
@@ -30,7 +59,7 @@ export default function Results() {
           Results.
         </h2>
         <p className="text-lg sm:text-xl text-slate-400 font-medium tracking-tight">
-          Websites optimized for real results.
+          {data.subtitle}
         </p>
       </div>
 
@@ -78,32 +107,37 @@ export default function Results() {
                 [40, 170], [120, 130], [200, 120], [280, 110], [400, 75]
               ].map(([x, y], i) => (
                 <motion.circle 
-                  key={i} 
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  key={i}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 1 + i * 0.1 }}
-                  cx={x} cy={y} r="5" fill="white" stroke="#22c55e" strokeWidth="2.5" 
+                  transition={{ delay: 1.0 + i * 0.1 }}
+                  cx={x} 
+                  cy={y} 
+                  r="6" 
+                  fill="#ffffff" 
+                  stroke="#22c55e" 
+                  strokeWidth="3"
+                  className="shadow-lg"
                 />
               ))}
             </svg>
-            <div className="absolute inset-0 bg-gradient-to-t from-green-50/40 to-transparent pointer-events-none" />
           </div>
         </motion.div>
 
-        {/* List Card - Spans 4 cols */}
+        {/* Info Column - Spans 4 cols */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
           className="md:col-span-4 bg-white p-4 sm:p-6 flex flex-col justify-center"
         >
           <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-10 leading-[1.1] tracking-tight">
-            Websites built for real business results
+            {data.title}
           </h3>
           <div className="space-y-8">
-            {stats.map((stat, i) => (
+            {data.stats.map((stat, i) => (
               <div key={i} className="group">
                 <h4 className="font-bold text-slate-900 text-lg mb-1 group-hover:text-green-600 transition-colors">{stat.label}</h4>
                 <p className="text-sm text-slate-500 leading-relaxed max-w-[280px]">{stat.desc}</p>
@@ -122,7 +156,7 @@ export default function Results() {
         >
           <div className="max-w-[260px] relative z-10">
             <h3 className="text-3xl font-bold text-slate-900 mb-3 italic tracking-tight">Full-Service A to Z</h3>
-            <p className="text-slate-500 leading-relaxed">
+            <p className="text-slate-550 leading-relaxed text-sm">
               Benefit from top-notch service and comfort from start to finish.
             </p>
           </div>
@@ -160,7 +194,7 @@ export default function Results() {
         >
           <div>
             <h3 className="text-3xl font-bold text-slate-900 mb-3 italic tracking-tight">Lightning-Fast Load Times</h3>
-            <p className="text-slate-500 leading-relaxed">
+            <p className="text-slate-550 leading-relaxed text-sm">
               Because nobody likes waiting.
             </p>
           </div>
@@ -218,6 +252,7 @@ export default function Results() {
         ))}
 
       </div>
+
     </SectionContainer>
   );
 }

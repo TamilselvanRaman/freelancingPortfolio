@@ -1,18 +1,17 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { motion, type Variants } from "framer-motion";
 import { Code2, Rocket, Globe, ShoppingCart, MonitorCog, CreditCard } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-const plans = [
+const defaultPlans = [
   {
     name: "Starter Plan",
     price: "₹3,999",
-    features: [
-      "1-2 Page Website",
-      "Mobile Responsive",
-      "WhatsApp Integration",
-    ],
+    features: "1-2 Page Website, Mobile Responsive, WhatsApp Integration",
     popular: false,
     TopIcon: Code2,
     BottomIcon: ShoppingCart,
@@ -23,11 +22,7 @@ const plans = [
   {
     name: "Growth Plan",
     price: "₹6,999",
-    features: [
-      "Business / Ecommerce Website",
-      "Up to 15 Products",
-      "Modern UI Design",
-    ],
+    features: "Business / Ecommerce Website, Up to 15 Products, Modern UI Design",
     popular: true,
     TopIcon: Rocket,
     BottomIcon: MonitorCog,
@@ -38,11 +33,7 @@ const plans = [
   {
     name: "Ecommerce Plan",
     price: "₹11,999",
-    features: [
-      "Full Ecommerce Setup",
-      "Payment Gateway (Razorpay)",
-      "Up to 30 Products",
-    ],
+    features: "Full Ecommerce Setup, Payment Gateway (Razorpay), Up to 30 Products",
     popular: false,
     TopIcon: Globe,
     BottomIcon: CreditCard,
@@ -67,6 +58,47 @@ interface PricingProps {
 }
 
 export default function Pricing({ onContactClick }: PricingProps) {
+  const [data, setData] = useState({
+    title: "Build Your Business Online",
+    subtitle: "Transparent pricing for your digital success.",
+    plans: defaultPlans
+  });
+
+  useEffect(() => {
+    async function fetchPricingContent() {
+      try {
+        const docRef = doc(db, "sections_content", "pricing");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const fetched = docSnap.data();
+          
+          // Merge Firestore fields
+          let plansArray = defaultPlans;
+          if (Array.isArray(fetched.plans)) {
+            plansArray = fetched.plans.map((p, idx) => {
+              const base = defaultPlans[idx] || defaultPlans[0];
+              return {
+                ...base,
+                name: p.name || base.name,
+                price: p.price || base.price,
+                features: p.features || base.features
+              };
+            });
+          }
+
+          setData({
+            title: fetched.title || "Build Your Business Online",
+            subtitle: fetched.subtitle || "Transparent pricing for your digital success.",
+            plans: plansArray
+          });
+        }
+      } catch (err) {
+        console.error("Error loading pricing configs:", err);
+      }
+    }
+    fetchPricingContent();
+  }, []);
+
   return (
     <section id="pricing" className="relative py-16 sm:py-24 md:py-32 bg-white overflow-hidden">
 
@@ -99,8 +131,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-3"
           >
-            Build Your Business{" "}
-            <span className="text-green-500">Online</span>
+            {data.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -109,7 +140,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-slate-400 text-base sm:text-lg"
           >
-            Transparent pricing for your digital success.
+            {data.subtitle}
           </motion.p>
         </div>
 
@@ -121,124 +152,130 @@ export default function Pricing({ onContactClick }: PricingProps) {
           viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 items-center"
         >
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{
-                y: plan.popular ? -10 : -8,
-                scale: plan.popular ? 1.08 : 1.03,
-                boxShadow: plan.popular
-                  ? `0 0 80px ${plan.glow}, 0 30px 80px rgba(0,0,0,0.12)`
-                  : "0 20px 60px rgba(34,197,94,0.15), 0 8px 32px rgba(0,0,0,0.08)",
-                borderColor: plan.popular ? "#22c55e" : "#86efac",
-              }}
-              whileTap={{ scale: plan.popular ? 1.04 : 0.99 }}
-              transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              onClick={onContactClick}
-              className={cn(
-                "relative rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col cursor-pointer",
-                plan.popular
-                  ? "md:scale-105 md:-my-4 z-20"
-                  : "z-10"
-              )}
-              style={{
-                background: plan.popular
-                  ? "linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%)"
-                  : "#ffffff",
-                border: plan.popular
-                  ? "2px solid #22c55e"
-                  : "1.5px solid #e2e8f0",
-                boxShadow: plan.popular
-                  ? `0 0 60px ${plan.glow}, 0 20px 60px rgba(0,0,0,0.08)`
-                  : "0 4px 24px rgba(0,0,0,0.05)",
-              }}
-            >
-              {/* Popular badge */}
-              {plan.popular && (
-                <div className="absolute -top-px left-1/2 -translate-x-1/2">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-green-400 blur-md rounded-full opacity-40" />
-                    <span className="relative flex items-center gap-1.5 bg-green-500 text-white text-[10px] sm:text-xs font-bold px-4 sm:px-5 py-1.5 rounded-b-xl shadow-lg">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                      Most Popular
+          {data.plans.map((plan, index) => {
+            const featuresList = typeof plan.features === "string" 
+              ? plan.features.split(",").map(f => f.trim()).filter(f => f.length > 0)
+              : [];
+
+            return (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover={{
+                  y: plan.popular ? -10 : -8,
+                  scale: plan.popular ? 1.08 : 1.03,
+                  boxShadow: plan.popular
+                    ? `0 0 80px ${plan.glow}, 0 30px 80px rgba(0,0,0,0.12)`
+                    : "0 20px 60px rgba(34,197,94,0.15), 0 8px 32px rgba(0,0,0,0.08)",
+                  borderColor: plan.popular ? "#22c55e" : "#86efac",
+                }}
+                whileTap={{ scale: plan.popular ? 1.04 : 0.99 }}
+                transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                onClick={onContactClick}
+                className={cn(
+                  "relative rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col cursor-pointer",
+                  plan.popular
+                    ? "md:scale-105 md:-my-4 z-20"
+                    : "z-10"
+                )}
+                style={{
+                  background: plan.popular
+                    ? "linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%)"
+                    : "#ffffff",
+                  border: plan.popular
+                    ? "2px solid #22c55e"
+                    : "1.5px solid #e2e8f0",
+                  boxShadow: plan.popular
+                    ? `0 0 60px ${plan.glow}, 0 20px 60px rgba(0,0,0,0.08)`
+                    : "0 4px 24px rgba(0,0,0,0.05)",
+                }}
+              >
+                {/* Popular badge */}
+                {plan.popular && (
+                  <div className="absolute -top-px left-1/2 -translate-x-1/2">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-green-400 blur-md rounded-full opacity-40" />
+                      <span className="relative flex items-center gap-1.5 bg-green-500 text-white text-[10px] sm:text-xs font-bold px-4 sm:px-5 py-1.5 rounded-b-xl shadow-lg">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                        Most Popular
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Inner glow accent bar (top) */}
+                <div
+                  className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl"
+                  style={{ background: plan.popular ? `linear-gradient(90deg, transparent, ${plan.accent}, transparent)` : "transparent" }}
+                />
+
+                {/* Card inner glow blob */}
+                {plan.popular && (
+                  <div
+                    className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-64 h-32 rounded-full blur-[50px] pointer-events-none"
+                    style={{ background: plan.accentLight }}
+                  />
+                )}
+
+                <div className={cn("relative z-10 p-6 sm:p-8 flex flex-col h-full", plan.popular ? "pt-10 sm:pt-12" : "")}>
+                  {/* Top Icon */}
+                  <div
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center mb-5 sm:mb-6"
+                    style={{
+                      background: plan.popular ? "rgba(34,197,94,0.1)" : "rgba(0,0,0,0.03)",
+                      border: plan.popular ? "1px solid rgba(34,197,94,0.3)" : "1px solid rgba(0,0,0,0.06)"
+                    }}
+                  >
+                    <plan.TopIcon
+                      className={cn("w-5 h-5 sm:w-6 sm:h-6", plan.popular ? "text-green-500" : "text-slate-400")}
+                      strokeWidth={1.8}
+                    />
+                  </div>
+
+                  {/* Plan name */}
+                  <h3 className={cn(
+                    "text-lg sm:text-xl font-bold mb-1",
+                    plan.popular ? "text-slate-900" : "text-slate-700"
+                  )}>
+                    {plan.name}
+                  </h3>
+
+                  {/* Price */}
+                  <div className="mb-6 sm:mb-8">
+                    <span
+                      className={cn(
+                        "text-3xl sm:text-4xl md:text-5xl font-black tracking-tight",
+                        plan.popular ? "text-green-500" : "text-slate-900"
+                      )}
+                    >
+                      {plan.price}
                     </span>
                   </div>
+
+                  {/* Features */}
+                  <ul className="space-y-2 sm:space-y-3 mb-8 flex-1">
+                    {featuresList.map((f, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-slate-500 text-xs sm:text-sm">
+                        <span
+                          className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
+                          style={{ background: plan.popular ? "#22c55e" : "#94a3b8" }}
+                        />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Bottom Icon */}
+                  <div className="mt-auto flex justify-end opacity-20">
+                    <plan.BottomIcon
+                      className={cn("w-8 h-8 sm:w-10 sm:h-10", plan.popular ? "text-green-500" : "text-slate-400")}
+                      strokeWidth={1.2}
+                    />
+                  </div>
                 </div>
-              )}
-
-              {/* Inner glow accent bar (top) */}
-              <div
-                className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl"
-                style={{ background: plan.popular ? `linear-gradient(90deg, transparent, ${plan.accent}, transparent)` : "transparent" }}
-              />
-
-              {/* Card inner glow blob */}
-              {plan.popular && (
-                <div
-                  className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-64 h-32 rounded-full blur-[50px] pointer-events-none"
-                  style={{ background: plan.accentLight }}
-                />
-              )}
-
-              <div className={cn("relative z-10 p-6 sm:p-8 flex flex-col h-full", plan.popular ? "pt-10 sm:pt-12" : "")}>
-                {/* Top Icon */}
-                <div
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center mb-5 sm:mb-6"
-                  style={{
-                    background: plan.popular ? "rgba(34,197,94,0.1)" : "rgba(0,0,0,0.03)",
-                    border: plan.popular ? "1px solid rgba(34,197,94,0.3)" : "1px solid rgba(0,0,0,0.06)"
-                  }}
-                >
-                  <plan.TopIcon
-                    className={cn("w-5 h-5 sm:w-6 sm:h-6", plan.popular ? "text-green-500" : "text-slate-400")}
-                    strokeWidth={1.8}
-                  />
-                </div>
-
-                {/* Plan name */}
-                <h3 className={cn(
-                  "text-lg sm:text-xl font-bold mb-1",
-                  plan.popular ? "text-slate-900" : "text-slate-700"
-                )}>
-                  {plan.name}
-                </h3>
-
-                {/* Price */}
-                <div className="mb-6 sm:mb-8">
-                  <span
-                    className={cn(
-                      "text-3xl sm:text-4xl md:text-5xl font-black tracking-tight",
-                      plan.popular ? "text-green-500" : "text-slate-900"
-                    )}
-                  >
-                    {plan.price}
-                  </span>
-                </div>
-
-                {/* Features */}
-                <ul className="space-y-2 sm:space-y-3 mb-8 flex-1">
-                  {plan.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-slate-500 text-xs sm:text-sm">
-                      <span
-                        className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
-                        style={{ background: plan.popular ? "#22c55e" : "#94a3b8" }}
-                      />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Bottom Icon */}
-                <div className="mt-auto flex justify-end opacity-20">
-                  <plan.BottomIcon
-                    className={cn("w-8 h-8 sm:w-10 sm:h-10", plan.popular ? "text-green-500" : "text-slate-400")}
-                    strokeWidth={1.2}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
       </div>

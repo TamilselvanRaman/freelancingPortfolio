@@ -1,9 +1,12 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../Button";
 import { PremiumSparkle, ReactLogo, NextJsLogo, NodeJsLogo, FirebaseLogo, TailwindLogo, MongoDBLogo, DockerLogo, TypeScriptLogo } from "../Icons";
 import { ArrowRight } from "lucide-react";
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const techStack = [
   { name: "React", icon: ReactLogo },
@@ -21,6 +24,31 @@ interface HeroProps {
 }
 
 export default function Hero({ onContactClick }: HeroProps) {
+  const [content, setContent] = useState({
+    title: "We build websites that grow your business",
+    subtitle: "I'm Tamil Selvan, a full-stack developer turning complex problems into elegant, high-performing digital solutions.",
+    buttonText: "Let's Create Something Amazing"
+  });
+
+  useEffect(() => {
+    async function fetchHeroContent() {
+      try {
+        const heroDoc = await getDoc(doc(db, "sections_content", "hero"));
+        if (heroDoc.exists()) {
+          const data = heroDoc.data();
+          setContent({
+            title: data.title || content.title,
+            subtitle: data.subtitle || content.subtitle,
+            buttonText: data.buttonText || content.buttonText
+          });
+        }
+      } catch (err) {
+        console.error("Error loading dynamic hero content:", err);
+      }
+    }
+    fetchHeroContent();
+  }, []);
+
   return (
     <section
       id="home"
@@ -39,20 +67,27 @@ export default function Hero({ onContactClick }: HeroProps) {
         >
           {/* Hero heading - fully wraps on mobile */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tighter text-slate-900 leading-[1.15] mb-6 mt-12 sm:mt-20 w-full break-words">
-            We build websites that{" "}
-            <br className="block sm:hidden" />
-            <span className="relative inline-block mt-2 sm:mt-0">
-              <span className="relative z-10 text-green-600">grow your business</span>
-              <svg
-                className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3 md:h-4 text-green-300/60 -z-10"
-                viewBox="0 0 200 9"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-              >
-                <path d="M2.00031 6.84039C56.667 2.17373 158.8 -3.15961 198 6.84039" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-              </svg>
-            </span>
+            {content.title.includes("grow your business") ? (
+              <>
+                {content.title.split("grow your business")[0]}
+                <br className="block sm:hidden" />
+                <span className="relative inline-block mt-2 sm:mt-0">
+                  <span className="relative z-10 text-green-600">grow your business</span>
+                  <svg
+                    className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3 md:h-4 text-green-300/60 -z-10"
+                    viewBox="0 0 200 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none"
+                  >
+                    <path d="M2.00031 6.84039C56.667 2.17373 158.8 -3.15961 198 6.84039" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+                  </svg>
+                </span>
+                {content.title.split("grow your business")[1]}
+              </>
+            ) : (
+              content.title
+            )}
           </h1>
 
           <motion.p
@@ -61,7 +96,7 @@ export default function Hero({ onContactClick }: HeroProps) {
             transition={{ delay: 0.3, duration: 0.7 }}
             className="text-base sm:text-lg text-slate-600 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed break-words"
           >
-            I&apos;m Tamil Selvan, a full-stack developer turning complex problems into elegant, high-performing digital solutions.
+            {content.subtitle}
           </motion.p>
 
           <motion.div
@@ -77,7 +112,7 @@ export default function Hero({ onContactClick }: HeroProps) {
               className="w-full sm:w-auto rounded-[2rem] gap-2 sm:gap-3 h-auto min-h-[4rem] py-3 sm:py-0 sm:h-16 px-6 sm:px-12 text-sm sm:text-xl transition-all group !whitespace-normal text-center"
             >
               <PremiumSparkle className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 shrink-0 group-hover:rotate-12 transition-transform" />
-              <span className="font-black tracking-tight uppercase leading-tight">Let&apos;s Create Something Amazing</span>
+              <span className="font-black tracking-tight uppercase leading-tight">{content.buttonText}</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 opacity-0 hidden sm:block -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
             </Button>
           </motion.div>

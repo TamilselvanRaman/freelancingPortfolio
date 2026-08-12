@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stacked Project Cards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0b0f17] text-white font-sans antialiased">
+
+  <!-- Intro Spacer -->
+  <div class="h-[40vh] flex flex-col items-center justify-center text-center px-4">
+    <h1 class="text-3xl font-extrabold">Project Showcase</h1>
+    <p class="text-zinc-400 text-sm mt-1">Scroll down to see cards lock & stack</p>
+  </div>
+
+  <!-- Main Stacking Area -->
+  <div class="relative max-w-5xl mx-auto px-4 pb-[30vh]">
+
+    <!-- Card 1 -->
+    <div class="sticky mb-[45vh]" style="top: 80px; z-index: 1;">
+      <div class="w-full bg-white text-zinc-900 rounded-[2.2rem] shadow-[0_-10px_35px_rgba(0,0,0,0.4)] border border-zinc-200 overflow-hidden flex flex-col lg:flex-row min-h-[500px]">
+        <div class="relative lg:w-1/2 min-h-[240px] bg-zinc-200 p-6 flex flex-col justify-between">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" />
+          <span class="relative z-10 self-start px-3 py-1 rounded-full bg-white/90 font-bold text-emerald-600 text-xs shadow">AI-POWERED PLATFORM</span>
+          <span class="relative z-10 self-end text-6xl font-extrabold text-white/50">01</span>
+        </div>
+        <div class="lg:w-1/2 p-8 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono font-bold text-zinc-400 uppercase">FULL-STACK DEVELOPER</span>
+            <h3 class="text-2xl font-extrabold text-emerald-600 mt-2">Rudy – Handmade Skincare E-commerce</h3>
+            <p class="text-zinc-600 text-sm mt-3">A full-stack React e-commerce application with Firebase auth and Zoho inventory sync.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">REACT 18</span>
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">TAILWIND CSS</span>
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">FIREBASE</span>
+            </div>
+          </div>
+          <div class="pt-6 border-t border-zinc-100 flex items-center justify-between">
+            <button class="px-5 py-2.5 bg-black text-white font-bold rounded-full text-xs">Launch Project ↗</button>
+            <span class="text-xs font-mono text-zinc-500">DETAILS ↗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="sticky mb-[45vh]" style="top: 118px; z-index: 2;">
+      <div class="w-full bg-white text-zinc-900 rounded-[2.2rem] shadow-[0_-10px_35px_rgba(0,0,0,0.4)] border border-zinc-200 overflow-hidden flex flex-col lg:flex-row min-h-[500px]">
+        <div class="relative lg:w-1/2 min-h-[240px] bg-zinc-200 p-6 flex flex-col justify-between">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" />
+          <span class="relative z-10 self-start px-3 py-1 rounded-full bg-white/90 font-bold text-purple-600 text-xs shadow">MOBILE APP</span>
+          <span class="relative z-10 self-end text-6xl font-extrabold text-white/50">02</span>
+        </div>
+        <div class="lg:w-1/2 p-8 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono font-bold text-zinc-400 uppercase">FLUTTER & BACKEND</span>
+            <h3 class="text-2xl font-extrabold text-purple-600 mt-2">H-TRACKER Productivity RPG</h3>
+            <p class="text-zinc-600 text-sm mt-3">Gamified habit tracker that turns productivity into an RPG-style game with level-up streaks.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">FLUTTER</span>
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">DART</span>
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">FIRESTORE</span>
+            </div>
+          </div>
+          <div class="pt-6 border-t border-zinc-100 flex items-center justify-between">
+            <button class="px-5 py-2.5 bg-black text-white font-bold rounded-full text-xs">Launch Project ↗</button>
+            <span class="text-xs font-mono text-zinc-500">DETAILS ↗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="sticky" style="top: 156px; z-index: 3;">
+      <div class="w-full bg-white text-zinc-900 rounded-[2.2rem] shadow-[0_-10px_35px_rgba(0,0,0,0.4)] border border-zinc-200 overflow-hidden flex flex-col lg:flex-row min-h-[500px]">
+        <div class="relative lg:w-1/2 min-h-[240px] bg-zinc-200 p-6 flex flex-col justify-between">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" />
+          <span class="relative z-10 self-start px-3 py-1 rounded-full bg-white/90 font-bold text-blue-600 text-xs shadow">ENTERPRISE SAAS</span>
+          <span class="relative z-10 self-end text-6xl font-extrabold text-white/50">03</span>
+        </div>
+        <div class="lg:w-1/2 p-8 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono font-bold text-zinc-400 uppercase">SYSTEMS ARCHITECT</span>
+            <h3 class="text-2xl font-extrabold text-blue-600 mt-2">ServeSync — Workforce Marketplace</h3>
+            <p class="text-zinc-600 text-sm mt-3">GPS geofenced workforce management platform with real-time tracking and offline sync.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">NEXT.JS</span>
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">POSTGRESQL</span>
+              <span class="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs rounded font-mono">REDIS</span>
+            </div>
+          </div>
+          <div class="pt-6 border-t border-zinc-100 flex items-center justify-between">
+            <button class="px-5 py-2.5 bg-black text-white font-bold rounded-full text-xs">Launch Project ↗</button>
+            <span class="text-xs font-mono text-zinc-500">DETAILS ↗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Outro Spacer -->
+  <div class="h-[60vh] flex items-center justify-center text-zinc-500 font-mono text-sm">
+    End of Projects Stack
+  </div>
+
+</body>
+</html>

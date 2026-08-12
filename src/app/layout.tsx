@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Geist } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
+import AdminShortcut from "@/components/AdminShortcut";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,13 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`} style={{ overflowX: 'hidden' }}>
-      <body className="antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900 selection:bg-green-200 selection:text-green-900" style={{ overflowX: 'hidden', maxWidth: '100vw', position: 'relative' }}>
-        <div style={{ overflowX: 'hidden', width: '100%', maxWidth: '100vw' }}>
-          <Navbar />
-          <main className="flex-1 w-full">{children}</main>
-          <Footer />
-        </div>
+    <html lang="en" className={cn("scroll-smooth overflow-x-hidden", inter.variable, "font-sans", geist.variable)}>
+      <body className="antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900 selection:bg-green-200 selection:text-green-900 overflow-x-hidden max-w-full relative">
+        <AdminShortcut />
+        {children}
       </body>
     </html>
   );
