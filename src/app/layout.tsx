@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("scroll-smooth overflow-x-hidden", inter.variable, "font-sans", geist.variable)}>
-      <body className="antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900 selection:bg-green-200 selection:text-green-900 overflow-x-hidden max-w-full relative">
+    <html lang="en" className={cn("scroll-smooth", inter.variable, "font-sans", geist.variable)} style={{ overflowX: 'clip' }}>
+      <body className="antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900 selection:bg-green-200 selection:text-green-900 max-w-full relative" style={{ overflowX: 'clip' }}>
         <AdminShortcut />
         {children}
       </body>
